@@ -11,6 +11,9 @@ let package = Package(
             name: "NGiOSNetworkModule",
             targets: ["NGiOSNetworkModule"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.4"),
+    ],
     targets: [
         .target(
             name: "NGiOSNetworkModule",

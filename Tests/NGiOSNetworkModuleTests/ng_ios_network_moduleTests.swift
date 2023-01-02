@@ -1,3 +1,8 @@
+//
+//  ng_ios_network_moduleTests.swift
+//  Netguru iOS Network Module
+//
+
 import XCTest
 @testable import NGiOSNetworkModule
 
