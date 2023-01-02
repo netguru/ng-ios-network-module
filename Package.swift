@@ -2,24 +2,24 @@
 import PackageDescription
 
 let package = Package(
-    name: "NGiOSNetworkModule",
+    name: "NgNetworkModule",
     platforms: [
         .iOS(.v13)
     ],
     products: [
         .library(
-            name: "NGiOSNetworkModule",
-            targets: ["NGiOSNetworkModule"]),
+            name: "NgNetworkModule",
+            targets: ["NgNetworkModule"]),
     ],
     dependencies: [
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.4"),
     ],
     targets: [
         .target(
-            name: "NGiOSNetworkModule",
+            name: "NgNetworkModule",
             dependencies: []),
         .testTarget(
-            name: "NGiOSNetworkModuleTests",
-            dependencies: ["NGiOSNetworkModule"]),
+            name: "NgNetworkModuleTests",
+            dependencies: ["NgNetworkModule"]),
     ]
 )

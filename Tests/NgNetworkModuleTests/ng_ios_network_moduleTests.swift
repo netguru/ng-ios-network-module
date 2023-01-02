@@ -4,7 +4,7 @@
 //
 
 import XCTest
-@testable import NGiOSNetworkModule
+@testable import NgNetworkModule
 
 final class ng_ios_network_moduleTests: XCTestCase {
     func testExample() throws {
