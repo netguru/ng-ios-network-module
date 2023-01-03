@@ -11,6 +11,18 @@ import XCTest
 final class NetworkRequestTest: XCTestCase {
     var sut: NetworkRequest!
 
+    func test_whenNonEssentialFieldsAreUndefined_shouldUseDefaultImplementation() {
+        //  given:
+        sut = EmptyNetworkRequest()
+
+        //  then:
+        XCTAssertNil(sut.body, "Should not define a request body")
+        XCTAssertNil(sut.bodyData, "Should not define a request body data")
+        XCTAssertNil(sut.parameters, "Should not define a request parameters")
+        XCTAssertNil(sut.additionalHeaderFields, "Should not define a request header fields")
+        XCTAssertEqual(sut.cachePolicy, .reloadIgnoringCacheData, "Should use no caching policy")
+    }
+
     func test_ifRequestHasBody_shouldEncodeItToData() {
         //  given:
         sut = FakePostNetworkRequest()
@@ -26,7 +38,8 @@ final class NetworkRequestTest: XCTestCase {
 
     func test_ifRequestHasBodyData_shouldUseBodyDataOverEncodableBody() {
         //  given:
-        sut = FakePostNetworkRequestWithDataBody()
+        let fixtureBodyContent = "fixtureBodyContent"
+        sut = FakePostNetworkRequest(bodyData: fixtureBodyContent.encoded())
 
         //  when:
         let body = sut.encodedBody
@@ -34,6 +47,6 @@ final class NetworkRequestTest: XCTestCase {
         //  then:
         let decodedBody = body?.decoded(into: String.self)
         XCTAssertNotNil(decodedBody, "Should decode request body")
-        XCTAssertEqual(decodedBody, FakePostNetworkRequestWithDataBody.FIXTURE_BODY_CONTENT, "Should decode the encoded body")
+        XCTAssertEqual(decodedBody, fixtureBodyContent, "Should decode the encoded body")
     }
 }

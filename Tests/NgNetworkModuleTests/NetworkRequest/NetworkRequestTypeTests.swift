@@ -1,10 +1,15 @@
+//
+//  NetworkRequestTypeTests.swift
+//  Netguru iOS Network Module
+//
+
 import UIKit
 import XCTest
 
 @testable import NgNetworkModule
 
 final class NetworkRequestTypeTest: XCTestCase {
-    
+
     func test_everyNetworkRequestType_shouldReturnProperValue() {
         //  given:
         let fixtureType1 = "fixtureType1"
@@ -15,7 +20,7 @@ final class NetworkRequestTypeTest: XCTestCase {
         let expectedValues = [
             "delete", "get", "patch", "post", "put", fixtureType1, fixtureType2
         ]
-        
+
         //  then:
         for (index, expectedValue) in expectedValues.enumerated() {
             let requestType = requestTypes[index]

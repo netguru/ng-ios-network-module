@@ -11,19 +11,19 @@ import Foundation
 public enum NetworkRequestType: Equatable {
     /// A GET network request type.
     case get
-    
+
     /// A POST network request type.
     case post
-    
+
     /// A DELETE network request type.
     case delete
-    
+
     /// A PUT network request type.
     case put
-    
+
     /// A PATCH network request type.
     case patch
-    
+
     /// A custom network request type. Provide the type value as an associated value.
     case custom(String)
 }

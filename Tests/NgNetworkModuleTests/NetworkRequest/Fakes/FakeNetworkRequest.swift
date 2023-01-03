@@ -7,18 +7,52 @@ import Foundation
 
 @testable import NgNetworkModule
 
-struct FakePostNetworkRequest: NetworkRequest {
-    let path: String = "https://netguru.com/welcome"
-    let method = NetworkRequestType.post
-    let body: Encodable? = FakeRequestBody(foo: "bar")
+struct EmptyNetworkRequest: NetworkRequest {
+    let path = "/delete"
+    let method = NetworkRequestType.delete
 }
 
-struct FakePostNetworkRequestWithDataBody: NetworkRequest {
-    static let FIXTURE_BODY_CONTENT = "FIXTURE_BODY_CONTENT"
-    let path: String = "https://netguru.com/welcome"
+struct FakePostNetworkRequest: NetworkRequest {
     let method = NetworkRequestType.post
-    let body: Encodable? = FakeRequestBody(foo: "bar")
-    let bodyData = FIXTURE_BODY_CONTENT.encoded()
+    let path: String
+    let body: Encodable?
+    let bodyData: Data?
+    let additionalHeaderFields: [String: String]?
+    let cachePolicy: NSURLRequest.CachePolicy
+
+    init(
+        path: String = "/welcome",
+        body: Encodable? = FakeRequestBody(foo: "bar"),
+        bodyData: Data? = nil,
+        additionalHeaderFields: [String: String]? = nil,
+        cachePolicy: NSURLRequest.CachePolicy = .reloadIgnoringCacheData
+    ) {
+        self.body = body
+        self.bodyData = bodyData
+        self.path = path
+        self.additionalHeaderFields = additionalHeaderFields
+        self.cachePolicy = cachePolicy
+    }
+}
+
+struct FakeGetNetworkRequest: NetworkRequest {
+    let method = NetworkRequestType.get
+    let path: String
+    let parameters: [String: String]?
+    let additionalHeaderFields: [String: String]?
+    let cachePolicy: NSURLRequest.CachePolicy
+
+    init(
+        path: String = "/welcome",
+        parameters: [String: String]? = nil,
+        additionalHeaderFields: [String: String]? = nil,
+        cachePolicy: NSURLRequest.CachePolicy = .reloadIgnoringCacheData
+    ) {
+        self.path = path
+        self.parameters = parameters
+        self.additionalHeaderFields = additionalHeaderFields
+        self.cachePolicy = cachePolicy
+    }
 }
 
 struct FakeRequestBody: Codable, Equatable {
