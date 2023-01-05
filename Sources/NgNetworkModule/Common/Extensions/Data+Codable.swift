@@ -9,7 +9,7 @@ extension Data {
 
     /// Attempts to decode a encoded object to a provided type.
     ///
-    /// - Parameter type: a type to decode an object to.
+    /// - Parameter type: a type to decode an object into.
     /// - Returns: a decoded object.
     func decoded<T: Decodable>(into type: T.Type) -> T? {
         try? JSONDecoder().decode(type, from: self)
