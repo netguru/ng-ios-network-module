@@ -1,0 +1,100 @@
+#
+# Highwayfile.yml
+# Copyright © 2020 Netguru S. A. All rights reserved.
+#
+# This `Highwayfile.yml` variant contains the default configuration to be used in
+# an iOS app repository. You can strip the comments in your `Highwayfile.yml`, if
+# you want.
+#
+# Scripts in the following `Highwayfile.yml` file makes use of the following
+# environment variables that should be set up as secret:
+#
+# - `APP_CENTER_API_TOKEN_STAGING`, `APP_CENTER_API_TOKEN_PRODUCTION`: API tokens
+#   used to deploy app to App Center.
+#
+# - `APP_CENTER_APP_NAME_STAGING_ID`, `APP_CENTER_APP_NAME_PRODUCTION_ID`: ID of the application used to deploy app to App Center.
+#
+# - `APP_CENTER_DISTRIBUTION_GROUP`: Name of the distribution group(s) that will be able to download the app.
+#
+# - `SLACK_WEBHOOK_URL`: A generic webhook integration URL used to post
+#   notifications to Slack.
+#
+# - `SLACK_CHANNEL` (optional): A target Slack channel to post notifications to.
+#   If not present, the default channel of the integration is used.
+#
+# Also, those scripts use the following environment variables that are declared
+# publicly in the following file:
+#
+# - `XCODEBUILD_PROJECT`: A path to a project or a workspace Xcode file.
+#
+# - `XCODEBUILD_SCHEME`: A name of the scheme to be built.
+#
+
+# Highway configuration file version.
+version: 1
+
+# Variables available for presets.
+variables:
+    default:
+        XCODEBUILD_SCHEME: Staging
+        XCODEBUILD_PROJECT: ./NgNetworkModule.xcodeproj
+        REPO_TOKEN: $(ENV:REPO_TOKEN)
+    staging:
+        XCODEBUILD_SCHEME: Staging
+#    preproduction:
+#        XCODEBUILD_SCHEME: Preproduction
+#    production:
+#        XCODEBUILD_SCHEME: Production
+
+# Bootstrap stage.
+bootstrap:
+    default:
+      
+# Test stage.
+test:
+    default:
+        - xcode_test:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            code_coverage: true
+            skip_build: true
+            settings:
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+
+# Deploy stage.
+deploy:
+    staging:
+        - xcode_archive:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            method: "enterprise"
+            settings:
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+        - appcenter:
+            api_token: $(APPCENTER_API_TOKEN)
+            owner_name: $(APPCENTER_ORG_NAME)
+            app_name: $(APPCENTER_APP_NAME)
+            distribution_group: $(APPCENTER_DISTRIBUTION_GROUP)
+            notify: true
+            
+    preproduction:
+        - xcode_archive:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            method: "enterprise"
+            settings:
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)
+        - appcenter:
+            api_token: $(APPCENTER_API_TOKEN)
+            owner_name: $(APPCENTER_ORG_NAME)
+            app_name: $(APPCENTER_APP_NAME)
+            distribution_group: $(APPCENTER_DISTRIBUTION_GROUP)
+            notify: true
+            
+    production:
+        - xcode_archive:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            method: "app-store"
+            settings:
+                _BUILD_NUMBER: $(ENV:BITRISE_BUILD_NUMBER)

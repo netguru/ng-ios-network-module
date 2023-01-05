@@ -1,0 +1,192 @@
+#
+# bitrise.yml
+# Copyright © 2020 Netguru S. A. All rights reserved.
+#
+# This `bitrise.yml` variant contains the default configuration to be used in
+# an iOS app repository. You can strip the comments in your `bitrise.yml`, if
+# you want.
+#
+# Scripts in the following `bitrise.yml` file makes use of the following
+# environment variables that should be set up as secret:
+#
+# - `JIRA_USER`, `JIRA_API_TOKEN`: Credentials for the account used by comment step.
+#   You can find these credentials in iOS vault in 1Password.
+#
+# - `JIRA_HOST`: Jira url address. (e.g. `https://netguru.atlassian.net`)
+#
+# - `JIRA_QA_TRANSACTION_ID`, `JIRA_NO_QA_TRANSACTION_ID`: IDs of transactions used by Jira.
+#   Can be found by using script described on `https://github.com/netguru/bitrise-step-ng-jira-step`.
+#   In case of no `NO QA` transaction, use `not used` as value.
+#
+# - `JIRA_DOMAIN` (optional): A domain URL to the JIRA installation, typically a
+#   subdomain on `atlassian.net`. If not present, information about JIRA task
+#   will not be included in a Slack notification.
+#
+# - `JIRA_PROJECT_KEY` (optional): A JIRA project key assocciated with the
+#   repository. If not present, information about JIRA task will not be included
+#   in a Slack notification.
+#
+
+
+# CLI metadata.
+#
+# This metadata is required to always be in `bitrise.yml`. The `format_version`
+# setting will be occasionally bumped.
+
+format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+# Workflow trigger map.
+#
+# The following trigger map triggers a build only for pull requests against
+# `develop` and `master` branches (from forks as well) and pushes to `develop`
+# and `master` branches.
+#
+# More on trigger maps: http://devcenter.bitrise.io/webhooks/trigger-map
+
+trigger_map:
+
+  - push_branch: main
+    workflow: build-staging
+    
+#  - push_branch: release/*
+#    workflow: build-release-candidate
+
+  - pull_request_target_branch: main
+    workflow: build-pull-request
+    
+#  - pull_request_target_branch: release/*
+#    workflow: build-pull-request
+
+# Workflow declarations.
+#
+# This list contains workflows used in the above trigger map.
+    
+workflows:
+
+  # Build, test and deploy a staging app.
+  #
+  # This workflow pulls dependencies, builds and tests an app with staging
+  # scheme and finally pushes the archived build to App Center.
+
+  build-staging:
+    envs:
+      - HIGHWAY_PRESET: staging
+    before_run:
+      - cache-pull
+      - bootstrap-code-signing
+      - bundle-install
+      - swiftformat-install
+      - run-highway
+    after_run:
+      - cache-push
+      - deploy-bitriseio
+      - firebase-dsym
+
+  # Build, test and deploy a release candidate app.
+  #
+  # This workflow pulls dependencies, builds and tests an app with staging
+  # scheme and finally pushes the archived build to App Center.
+
+  build-release-candidate:
+    envs:
+      - HIGHWAY_PRESET: preproduction
+    before_run:
+      - cache-pull
+      - bootstrap-code-signing
+      - bundle-install
+      - swiftformat-install
+      - run-highway
+    after_run:
+      - cache-push
+      - deploy-bitriseio
+      - firebase-dsym
+
+  # Build and test a staging app.
+  #
+  # This workflow pulls dependencies and then builds and tests an app with
+  # staging scheme.
+
+  build-pull-request:
+    before_run:
+      - configure-firebase
+      - cache-pull
+      - bootstrap-code-signing
+      - bundle-install
+      - swiftformat-install
+      - run-highway
+    after_run:
+      - cache-push
+      - deploy-bitriseio
+
+  # Pull previously cached directories.
+  
+  cache-pull:
+    envs:
+        - REPO_TOKEN: $REPO_TOKEN
+    steps:
+      - cache-pull: {}
+      - script:
+          title: 'Cloning and rebuild SDK: sh buildSDK.sh'
+          inputs:
+            - content: |-
+                  sh buildSDK.sh $REPO_TOKEN
+
+  # Push cached directories.
+  #
+  # By default, this pushes both `./Carthage` and `./Pods` directories. If you
+  # don't use those package managers in your app, you can remove a corresponding
+  # line.
+
+  cache-push:
+    steps:
+      - cache-push:
+          inputs:
+            - cache_paths: |-
+                ./Carthage
+                ./Pods
+
+  # Bootstrap code signing by installing certificates and provisioning profiles.
+
+  bootstrap-code-signing:
+    steps:
+      - certificate-and-profile-installer: {}
+
+  # Install newest bundler and bootstrap dependencies.
+
+  bundle-install:
+    steps:
+      - script:
+          title: 'bundle-install'
+          inputs:
+            - content: |-
+               gem uninstall bundler --force
+               gem install bundler --force
+               bundle install
+
+  # Install SwiftFormat.
+
+  swiftformat-install:
+    steps:
+      - brew-install:
+          title: 'swiftformat-install'
+          inputs:
+            - packages: "swiftformat"
+
+  # Run Highway with given preset.
+
+  run-highway:
+    steps:
+      - script:
+          title: 'bundle exec fastlane highway'
+          inputs:
+            - content: bundle exec fastlane highway preset:$HIGHWAY_PRESET
+
+  # Deploy build artifacts to bitrise.io.
+
+  deploy-bitriseio:
+    steps:
+      - deploy-to-bitrise-io:
+          inputs:
+            - notify_user_groups: none
+            - is_enable_public_page: false
