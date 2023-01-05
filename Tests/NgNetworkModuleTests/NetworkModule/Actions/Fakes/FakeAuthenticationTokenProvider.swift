@@ -3,7 +3,7 @@
 //  Netguru iOS Network Module
 //
 
-import UIKit
+import Foundation
 
 @testable import NgNetworkModule
 
