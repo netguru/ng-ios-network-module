@@ -1,4 +1,4 @@
 # ng-ios-network-module
 iOS Networking Module
 Sample Bitrise Push Test
-Test-6
+Test-7
