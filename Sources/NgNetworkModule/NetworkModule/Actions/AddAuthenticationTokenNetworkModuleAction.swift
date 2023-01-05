@@ -11,7 +11,7 @@ public final class AddAuthenticationTokenNetworkModuleAction: NetworkModuleActio
     /// An authentication token provider.
     let authenticationTokenProvider: AuthenticationTokenProvider
 
-    /// an authentication token header filed name.
+    /// an authentication token header field name.
     let authenticationTokenHeaderFieldName: String
 
     /// A default initializer for AddAuthenticationTokenNetworkModuleAction.
