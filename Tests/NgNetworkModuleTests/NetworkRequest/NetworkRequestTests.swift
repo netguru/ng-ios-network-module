@@ -19,7 +19,9 @@ final class NetworkRequestTest: XCTestCase {
         XCTAssertNil(sut.body, "Should not define a request body")
         XCTAssertNil(sut.bodyData, "Should not define a request body data")
         XCTAssertNil(sut.parameters, "Should not define a request parameters")
-        XCTAssertNil(sut.additionalHeaderFields, "Should not define a request header fields")
+        XCTAssertFalse(sut.requiresAuthenticationToken, "Should not require authentication token")
+        XCTAssertEqual(sut.additionalHeaderFields["Content-Type"], "application/json", "Should define proper Content-Type field")
+        XCTAssertEqual(sut.additionalHeaderFields["Accept"], "application/json", "Should define proper Accept field")
         XCTAssertEqual(sut.cachePolicy, .reloadIgnoringCacheData, "Should use no caching policy")
     }
 

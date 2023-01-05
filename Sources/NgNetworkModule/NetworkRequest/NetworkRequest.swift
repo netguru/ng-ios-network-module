@@ -20,7 +20,7 @@ public protocol NetworkRequest {
     var cachePolicy: NSURLRequest.CachePolicy { get }
 
     /// Additional request header fields.
-    var additionalHeaderFields: [String: String]? { get }
+    var additionalHeaderFields: [String: String] { get }
 
     /// A request parameters.
     var parameters: [String: String]? { get }
@@ -30,6 +30,9 @@ public protocol NetworkRequest {
 
     /// A request body data. To be used as an alternative to (and takes precedence over) `NetworkRequest.body`.
     var bodyData: Data? { get }
+
+    /// A flag indicating if a request requires an access token.
+    var requiresAuthenticationToken: Bool { get }
 }
 
 // MARK: - Default NetworkRequest implementation
@@ -58,8 +61,17 @@ public extension NetworkRequest {
     }
 
     /// - SeeAlso: NetworkRequest.additionalHeaderFields
-    var additionalHeaderFields: [String: String]? {
-        nil
+    /// By default, adding Content-Type and Accept header fields.
+    var additionalHeaderFields: [String: String] {
+        [
+            NetworkRequestConstants.contentTypeFieldName: NetworkRequestConstants.contentTypeFieldValue,
+            NetworkRequestConstants.acceptFieldName: NetworkRequestConstants.acceptFieldValue
+        ]
+    }
+
+    /// - SeeAlso: NetworkRequest.requiresAuthenticationToken
+    var requiresAuthenticationToken: Bool {
+        false
     }
 }
 
@@ -79,4 +91,11 @@ extension NetworkRequest {
         }
         return false
     }
+}
+
+private enum NetworkRequestConstants {
+    static let contentTypeFieldName = "Content-Type"
+    static let contentTypeFieldValue = "application/json"
+    static let acceptFieldName = "Accept"
+    static let acceptFieldValue = "application/json"
 }
