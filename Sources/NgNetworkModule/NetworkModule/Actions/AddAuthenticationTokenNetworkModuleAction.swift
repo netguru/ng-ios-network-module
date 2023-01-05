@@ -17,7 +17,7 @@ public final class AddAuthenticationTokenNetworkModuleAction: NetworkModuleActio
     /// A default initializer for AddAuthenticationTokenNetworkModuleAction.
     ///
     /// - Parameter authenticationTokenProvider: an authentication token provider.
-    /// - Parameter authenticationTokenHeaderFieldName: an authentication token header filed name.
+    /// - Parameter authenticationTokenHeaderFieldName: an authentication token header field name.
     public init(
         authenticationTokenProvider: AuthenticationTokenProvider,
         authenticationTokenHeaderFieldName: String
