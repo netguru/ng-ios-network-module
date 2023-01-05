@@ -93,6 +93,8 @@ extension NetworkRequest {
     }
 }
 
+// MARK: - Private constants
+
 private enum NetworkRequestConstants {
     static let contentTypeFieldName = "Content-Type"
     static let contentTypeFieldValue = "application/json"

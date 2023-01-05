@@ -6,7 +6,7 @@
 import Foundation
 
 /// A network module action adding authentication header to an outgoing request.
-final class AddAuthenticationTokenNetworkModuleAction: NetworkModuleAction {
+public final class AddAuthenticationTokenNetworkModuleAction: NetworkModuleAction {
 
     /// An authentication token provider.
     let authenticationTokenProvider: AuthenticationTokenProvider
@@ -18,7 +18,7 @@ final class AddAuthenticationTokenNetworkModuleAction: NetworkModuleAction {
     ///
     /// - Parameter authenticationTokenProvider: an authentication token provider.
     /// - Parameter authenticationTokenHeaderFieldName: an authentication token header filed name.
-    init(
+    public init(
         authenticationTokenProvider: AuthenticationTokenProvider,
         authenticationTokenHeaderFieldName: String
     ) {
@@ -27,7 +27,7 @@ final class AddAuthenticationTokenNetworkModuleAction: NetworkModuleAction {
     }
 
     /// - SeeAlso: AddJsonContentTypeNetworkModuleAction.performBeforeExecutingNetworkRequest(request:urlRequest:)
-    func performBeforeExecutingNetworkRequest(request: NetworkRequest?, urlRequest: inout URLRequest) {
+    public func performBeforeExecutingNetworkRequest(request: NetworkRequest?, urlRequest: inout URLRequest) {
         guard request?.requiresAuthenticationToken == true else {
             return
         }

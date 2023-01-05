@@ -6,7 +6,7 @@
 import Foundation
 
 /// An abstraction providing an authentication token.
-protocol AuthenticationTokenProvider {
+public protocol AuthenticationTokenProvider {
 
     /// An authentication token.
     var authenticationToken: String { get }
@@ -15,7 +15,7 @@ protocol AuthenticationTokenProvider {
 extension String: AuthenticationTokenProvider {
 
     /// - SeeAlso: AuthenticationTokenProvider.authenticationToken
-    var authenticationToken: String {
+    public var authenticationToken: String {
         self
     }
 }

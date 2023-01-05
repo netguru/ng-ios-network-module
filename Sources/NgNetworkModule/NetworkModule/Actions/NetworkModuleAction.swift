@@ -6,7 +6,7 @@
 import Foundation
 
 /// An abstraction describing actions to be performed before and / or after the network request is called.
-protocol NetworkModuleAction: AnyObject {
+public protocol NetworkModuleAction: AnyObject {
 
     /// An action to be executed before the network call.
     /// Use to eg. add access token to the outgoing request, etc.
@@ -28,8 +28,8 @@ protocol NetworkModuleAction: AnyObject {
 extension NetworkModuleAction {
 
     /// - SeeAlso: NetworkModuleAction.performBeforeExecutingNetworkRequest(request:urlRequest:)
-    func performBeforeExecutingNetworkRequest(request: NetworkRequest?, urlRequest: inout URLRequest) {}
+    public func performBeforeExecutingNetworkRequest(request: NetworkRequest?, urlRequest: inout URLRequest) {}
 
     /// - SeeAlso: NetworkModuleAction.performAfterExecutingNetworkRequest(request:networkResponse:)
-    func performAfterExecutingNetworkRequest(request: NetworkRequest?, networkResponse: NetworkResponse) {}
+    public func performAfterExecutingNetworkRequest(request: NetworkRequest?, networkResponse: NetworkResponse) {}
 }
