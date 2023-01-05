@@ -22,7 +22,7 @@ public final class AddAuthenticationTokenNetworkModuleAction: NetworkModuleActio
         self.authenticationTokenHeaderFieldName = authenticationTokenHeaderFieldName
     }
 
-    /// - SeeAlso: AddJsonContentTypeNetworkModuleAction.performBeforeExecutingNetworkRequest(request:urlRequest:)
+    /// - SeeAlso: NetworkModuleAction.performBeforeExecutingNetworkRequest(request:urlRequest:)
     public func performBeforeExecutingNetworkRequest(request: NetworkRequest?, urlRequest: inout URLRequest) {
         guard request?.requiresAuthenticationToken == true else {
             return
