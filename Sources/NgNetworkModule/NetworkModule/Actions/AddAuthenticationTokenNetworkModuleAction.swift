@@ -7,12 +7,8 @@ import Foundation
 
 /// A network module action adding authentication header to an outgoing request.
 public final class AddAuthenticationTokenNetworkModuleAction: NetworkModuleAction {
-
-    /// An authentication token provider.
-    let authenticationTokenProvider: AuthenticationTokenProvider
-
-    /// an authentication token header field name.
-    let authenticationTokenHeaderFieldName: String
+    private let authenticationTokenProvider: AuthenticationTokenProvider
+    private let authenticationTokenHeaderFieldName: String
 
     /// A default initializer for AddAuthenticationTokenNetworkModuleAction.
     ///
