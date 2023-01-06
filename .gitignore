@@ -83,14 +83,15 @@ Dependencies/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
+fastlane/*.md
 fastlane/test_output
-Fastlane/xcov_report
+fastlane/xcov_report
 
 # highway
 
-highway/*.log
-highway/*.html
-highway/*.junit
+fastlane/highway/*.log
+fastlane/highway/*.html
+fastlane/highway/*.junit
 
 # Code Injection
 #
