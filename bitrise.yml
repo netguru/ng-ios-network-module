@@ -11,12 +11,25 @@ workflows:
 
   build-pull-request:
     before_run:
+      - clone
+      - cache-pull
       - bundle-install
       - swiftformat-install
       - swift-test
       - run-highway
     after_run:
       - deploy-bitriseio
+      
+  # Clone the code
+
+  clone:
+    steps:
+      - activate-ssh-key:
+          title: activate-ssh-key
+      - git-clone:
+          title: git-clone
+          inputs:
+            - clone_depth: 1
 
   # Pull previously cached directories.
   
