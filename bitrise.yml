@@ -30,19 +30,6 @@ workflows:
           inputs:
             - clone_depth: 1
 
-  # Pull previously cached directories.
-  
-  cache-pull:
-    envs:
-        - REPO_TOKEN: $REPO_TOKEN
-    steps:
-      - cache-pull: {}
-      - script:
-          title: 'Cloning and rebuild SDK: sh buildSDK.sh'
-          inputs:
-            - content: |-
-                  sh buildSDK.sh $REPO_TOKEN
-
   # Install newest bundler and bootstrap dependencies.
 
   bundle-install:
@@ -82,7 +69,7 @@ workflows:
       - script:
           title: 'bundle exec fastlane highway'
           inputs:
-            - content: bundle exec fastlane highway preset:$HIGHWAY_PRESET
+            - content: bundle exec fastlane highway
 
   # Deploy build artifacts to bitrise.io.
 
