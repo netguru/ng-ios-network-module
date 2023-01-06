@@ -20,14 +20,15 @@ public extension NetworkResponse {
     /// A convenience method decoding a network response data into a provided response type.
     ///
     /// - Parameter responseType: a response type.
+    /// - Parameter decoder: a JSON decoder.
     /// - Returns: a resulting response structure.
-    func decoded<T: Decodable>(into responseType: T.Type) -> Result<T, NetworkError> {
+    func decoded<T: Decodable>(into responseType: T.Type, decoder: JSONDecoder = JSONDecoder()) -> Result<T, NetworkError> {
         guard let data = data else {
             return .failure(NetworkError.noResponseData)
         }
 
         do {
-            return .success(try data.decoded(into: responseType))
+            return .success(try data.decoded(into: responseType, decoder: decoder))
         } catch {
             return .failure(.responseParsingFailed)
         }

@@ -10,17 +10,19 @@ extension Data {
     /// Attempts to decode a encoded object to a provided type.
     ///
     /// - Parameter type: a type to decode an object into.
+    /// - Parameter decoder: a JSON decoder.
     /// - Returns: a decoded object.
-    func decoded<T: Decodable>(into type: T.Type) -> T? {
-        try? JSONDecoder().decode(type, from: self)
+    func decoded<T: Decodable>(into type: T.Type, decoder: JSONDecoder = JSONDecoder()) -> T? {
+        try? decoder.decode(type, from: self)
     }
 
     /// Attempts to decode an encoded object to a provided type.
     ///
     /// - Parameter type: a type to decode an object to.
+    /// - Parameter decoder: a JSON decoder.
     /// - Returns: a decoded object.
     /// - Throws: a NetworkError thrown when the decoding fails.
-    func decoded<T: Decodable>(into type: T.Type) throws -> T {
+    func decoded<T: Decodable>(into type: T.Type, decoder: JSONDecoder = JSONDecoder()) throws -> T {
         do {
             return try JSONDecoder().decode(type, from: self)
         } catch {
@@ -34,7 +36,7 @@ extension Encodable {
     /// Encodes an item into data.
     ///
     /// - Returns: a data representation.
-    func encoded() -> Data? {
-        try? JSONEncoder().encode(self)
+    func encoded(encoder: JSONEncoder = JSONEncoder()) -> Data? {
+        try? encoder.encode(self)
     }
 }
