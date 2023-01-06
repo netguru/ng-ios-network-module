@@ -20,4 +20,4 @@ test:
             scheme: $(XCODEBUILD_SCHEME)
             device: "iPhone 12"
             code_coverage: true
-            skip_build: true
+            skip_build: false
