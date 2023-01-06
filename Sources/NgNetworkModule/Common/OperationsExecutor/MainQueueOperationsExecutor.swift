@@ -10,7 +10,7 @@ public final class MainQueueOperationsExecutor: AsynchronousOperationsExecutor {
 
     /// - SeeAlso: AsynchronousOperationsExecutor.type
     public let type = AsynchronousExecutorType.main
-    
+
     /// A default, public initializer.
     public init() {}
 }

@@ -1,3 +1,8 @@
+//
+//  BackgroundQueueOperationsExecutorTests.swift
+//  Netguru iOS Network Module
+//
+
 import Foundation
 import XCTest
 

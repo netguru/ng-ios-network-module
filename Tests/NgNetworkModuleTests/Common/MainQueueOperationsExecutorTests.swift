@@ -1,3 +1,8 @@
+//
+//  MainQueueOperationsExecutorTests.swift
+//  Netguru iOS Network Module
+//
+
 import Foundation
 import XCTest
 
@@ -14,7 +19,7 @@ final class MainQueueOperationsExecutorTest: XCTestCase {
         //  given:
         let fixtureExpectation = XCTestExpectation(description: "Execute a callback")
         var didExecuteCallback: Bool?
-        
+
         //  when:
         sut.execute {
             didExecuteCallback = true
