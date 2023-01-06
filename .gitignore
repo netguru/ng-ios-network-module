@@ -84,6 +84,13 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+Fastlane/xcov_report
+
+# highway
+
+highway/*.log
+highway/*.html
+highway/*.junit
 
 # Code Injection
 #
