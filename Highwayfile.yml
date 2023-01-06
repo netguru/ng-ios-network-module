@@ -1,0 +1,23 @@
+#
+# Highwayfile.yml
+# Copyright © 2020 Netguru S. A. All rights reserved.
+
+
+# Highway configuration file version.
+version: 1
+
+# Variables available for presets.
+variables:
+    default:
+        XCODEBUILD_SCHEME: NgNetworkModule-Package
+        XCODEBUILD_PROJECT: ./NgNetworkModule.xcodeproj
+        
+# Test stage.
+test:
+    default:
+        - xcode_test:
+            project: $(XCODEBUILD_PROJECT)
+            scheme: $(XCODEBUILD_SCHEME)
+            device: "iPhone 12"
+            code_coverage: true
+            skip_build: true

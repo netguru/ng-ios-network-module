@@ -1,0 +1,82 @@
+
+format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+trigger_map:
+
+  - pull_request_target_branch: main
+    workflow: build-pull-request
+    
+workflows:
+
+  build-pull-request:
+    before_run:
+      - bundle-install
+      - swiftformat-install
+      - swift-test
+      - run-highway
+    after_run:
+      - deploy-bitriseio
+
+  # Pull previously cached directories.
+  
+  cache-pull:
+    envs:
+        - REPO_TOKEN: $REPO_TOKEN
+    steps:
+      - cache-pull: {}
+      - script:
+          title: 'Cloning and rebuild SDK: sh buildSDK.sh'
+          inputs:
+            - content: |-
+                  sh buildSDK.sh $REPO_TOKEN
+
+  # Install newest bundler and bootstrap dependencies.
+
+  bundle-install:
+    steps:
+      - script:
+          title: 'bundle-install'
+          inputs:
+            - content: |-
+               gem uninstall bundler --force
+               gem install bundler --force
+               bundle install
+
+  # Create a xcodeproj file for test.
+  swift-test:
+    steps:
+      - script:
+          title: 'Create a xcodeproj file for test'
+          inputs:
+            - content: |-
+               gem install xcov
+               swift package generate-xcodeproj
+               
+
+  # Install SwiftFormat.
+
+  swiftformat-install:
+    steps:
+      - brew-install:
+          title: 'swiftformat-install'
+          inputs:
+            - packages: "swiftformat"
+
+  # Run Highway with given preset.
+
+  run-highway:
+    steps:
+      - script:
+          title: 'bundle exec fastlane highway'
+          inputs:
+            - content: bundle exec fastlane highway preset:$HIGHWAY_PRESET
+
+  # Deploy build artifacts to bitrise.io.
+
+  deploy-bitriseio:
+    steps:
+      - deploy-to-bitrise-io:
+          inputs:
+            - notify_user_groups: none
+            - is_enable_public_page: false
