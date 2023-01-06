@@ -38,7 +38,7 @@ public final class DefaultRequestBuilder: RequestBuilder {
         urlRequest.cachePolicy = request.cachePolicy
         urlRequest.httpMethod = request.method.value
         urlRequest.httpBody = request.encodedBody
-        appendIfNeeded(additionalHeaderFields: request.additionalHeaderFields, toRequest: &urlRequest)
+        append(additionalHeaderFields: request.additionalHeaderFields, toRequest: &urlRequest)
 
         return urlRequest
     }
@@ -70,11 +70,7 @@ private extension DefaultRequestBuilder {
         }
     }
 
-    func appendIfNeeded(additionalHeaderFields fields: [String: String]?, toRequest urlRequest: inout URLRequest) {
-        guard let fields = fields else {
-            return
-        }
-
+    func append(additionalHeaderFields fields: [String: String], toRequest urlRequest: inout URLRequest) {
         for (key, value) in fields {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
