@@ -12,7 +12,6 @@ workflows:
   build-pull-request:
     before_run:
       - clone
-      - cache-pull
       - bundle-install
       - swiftformat-install
       - swift-test
