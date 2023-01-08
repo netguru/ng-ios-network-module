@@ -14,19 +14,13 @@ workflows:
     envs:
       - HIGHWAY_PRESET: staging
     before_run:
-      - bootstrap
-      - run-highway
-    after_run:
-      - deploy-bitriseio
-  
-  # Setup all development dependencies and tools
-  
-  bootstrap:
-    before_run:
       - clone
       - bundle-install
       - swiftformat-install
       - swift-test
+      - run-highway
+    after_run:
+      - deploy-bitriseio
       
   # Clone the code
 
