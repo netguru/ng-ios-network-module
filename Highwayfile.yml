@@ -11,10 +11,12 @@ variables:
     default:
         XCODEBUILD_SCHEME: NgNetworkModule-Package
         XCODEBUILD_PROJECT: ./NgNetworkModule.xcodeproj
+    staging:
+        XCODEBUILD_SCHEME: NgNetworkModule-Package
         
 # Test stage.
 test:
-    default:
+    staging:
         - xcode_test:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
