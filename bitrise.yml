@@ -11,8 +11,6 @@ trigger_map:
 workflows:
 
   build-pull-request:
-    envs:
-      - HIGHWAY_PRESET: staging
     before_run:
       - clone
       - bundle-install
@@ -72,7 +70,7 @@ workflows:
       - script:
           title: 'bundle exec fastlane highway'
           inputs:
-            - content: bundle exec fastlane highway preset:$HIGHWAY_PRESET
+            - content: bundle exec fastlane highway
 
   # Deploy build artifacts to bitrise.io.
 

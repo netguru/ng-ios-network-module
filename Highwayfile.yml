@@ -9,10 +9,8 @@ version: 1
 # Variables available for presets.
 variables:
     default:
-        XCODEBUILD_SCHEME: NgNetworkModule
+        XCODEBUILD_SCHEME: NgNetworkModule-Package
         XCODEBUILD_PROJECT: ./NgNetworkModule.xcodeproj
-    staging:
-        XCODEBUILD_SCHEME: NgNetworkModule
         
 # Test stage.
 test:
@@ -20,6 +18,6 @@ test:
         - xcode_test:
             project: $(XCODEBUILD_PROJECT)
             scheme: $(XCODEBUILD_SCHEME)
-            device: "iPhone 12"
+            device: 'iPhone 12'
             code_coverage: true
             skip_build: true
