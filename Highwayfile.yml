@@ -11,6 +11,16 @@ variables:
     default:
         XCODEBUILD_SCHEME: NgNetworkModule-Package
         XCODEBUILD_PROJECT: ./NgNetworkModule.xcodeproj
+    staging:
+        XCODEBUILD_SCHEME: NgNetworkModule-Package
+        
+# Bootstrap stage.
+bootstrap:
+    default:
+        - carthage:
+            command: "bootstrap"
+            platforms:
+                - ios
         
 # Test stage.
 test:
