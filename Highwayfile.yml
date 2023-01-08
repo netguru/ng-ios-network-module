@@ -9,7 +9,7 @@ version: 1
 # Variables available for presets.
 variables:
     default:
-        XCODEBUILD_SCHEME: NgNetworkModule-Package
+        XCODEBUILD_SCHEME: NgNetworkModule
         XCODEBUILD_PROJECT: ./NgNetworkModule.xcodeproj
     staging:
         XCODEBUILD_SCHEME: NgNetworkModule-Package
