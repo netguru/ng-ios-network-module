@@ -39,7 +39,7 @@ public final class DefaultNetworkModule: NetworkModule {
         completion: ((Result<NetworkResponse, NetworkError>) -> Void)?
     ) -> URLSessionTask? {
         guard let urlRequest = requestBuilder.build(request: request) else {
-            executeOnMainThread(completionCallback: completion, result: .failure(.requestParsingFailed))
+            execute(completionCallback: completion, result: .failure(.requestParsingFailed))
             return nil
         }
 
@@ -74,7 +74,7 @@ private extension DefaultNetworkModule {
             } else if let response = response as? HTTPURLResponse {
                 self?.handle(response: response, data: data, request: networkRequest, completion: completion)
             } else {
-                self?.executeOnMainThread(completionCallback: completion, result: .failure(NetworkError.unknown))
+                self?.execute(completionCallback: completion, result: .failure(NetworkError.unknown))
             }
         }
         task.resume()
@@ -89,13 +89,13 @@ private extension DefaultNetworkModule {
         completion: ((Result<NetworkResponse, NetworkError>) -> Void)?
     ) {
         if let networkError = response.toNetworkError() {
-            executeOnMainThread(completionCallback: completion, result: .failure(networkError))
+            execute(completionCallback: completion, result: .failure(networkError))
             return
         }
 
         let networkResponse = NetworkResponse(data: data, networkResponse: response)
         performActionsAfterNetworkCall(request: request, response: networkResponse)
-        executeOnMainThread(completionCallback: completion, result: .success(networkResponse))
+        execute(completionCallback: completion, result: .success(networkResponse))
     }
 
     func handle(error: NSError, completion: ((Result<NetworkResponse, NetworkError>) -> Void)?) {
@@ -104,7 +104,7 @@ private extension DefaultNetworkModule {
             return
         }
 
-        executeOnMainThread(completionCallback: completion, result: .failure(networkError))
+        execute(completionCallback: completion, result: .failure(networkError))
     }
 
     func performActionsBeforeNetworkCall(request: NetworkRequest?, urlRequest: inout URLRequest) {
@@ -119,7 +119,7 @@ private extension DefaultNetworkModule {
         }
     }
 
-    func executeOnMainThread(
+    func execute(
         completionCallback callback: ((Result<NetworkResponse, NetworkError>) -> Void)?,
         result: Result<NetworkResponse, NetworkError>
     ) {
