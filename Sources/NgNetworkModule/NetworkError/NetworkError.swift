@@ -14,8 +14,10 @@ public enum NetworkError: Error, Equatable {
     case invalidRequest(code: Int, message: String?)
     case serverError(code: Int, message: String?)
     case custom(code: Int, message: String?)
+    case cancelled
 
     /// Network errors associated with parting a response:
+    case requestParsingFailed
     case responseParsingFailed
     case noResponseData
 
@@ -30,6 +32,8 @@ public enum NetworkError: Error, Equatable {
     ///   - message: an optional error message.
     public init?(code: Int, message: String?) {
         switch code {
+        case 200...399:
+            return nil
         case 404:
             self = .notFound
         case 403:
@@ -40,8 +44,29 @@ public enum NetworkError: Error, Equatable {
             self = .invalidRequest(code: code, message: message)
         case 500...599:
             self = .serverError(code: code, message: message)
+        case -999:
+            self = .cancelled
         default:
             self = .custom(code: code, message: message)
         }
+    }
+
+    /// A convenience initializer for NetworkError based on provided HTTPURLResponse.
+    ///
+    /// - Parameter urlResponse: a response.
+    public init?(urlResponse: HTTPURLResponse) {
+        let statusCode = urlResponse.statusCode
+        if let error = statusCode.toNetworkError(message: HTTPURLResponse.localizedString(forStatusCode: statusCode)) {
+            self = error
+        } else {
+            return nil
+        }
+    }
+
+    /// A convenience initializer for NetworkError based on provided NSError.
+    ///
+    /// - Parameter error: an error.
+    public init(error: NSError) {
+        self = NetworkError(code: error.code, message: error.localizedDescription) ?? .unknown
     }
 }

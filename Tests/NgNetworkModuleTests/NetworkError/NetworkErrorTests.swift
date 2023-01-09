@@ -13,7 +13,19 @@ final class NetworkErrorTest: XCTestCase {
     func test_whenProvidingErrorCode_shouldCreateNetworkErrorOfProperType() {
         XCTAssertEqual(createError(fromCode: 401), NetworkError.unauthorized, "Should convert to proper error")
         XCTAssertEqual(createError(fromCode: 403), NetworkError.forbidden, "Should convert to proper error")
-        XCTAssertEqual(createError(fromCode: 404), NetworkError.notFound, "Should convert to proper error")
+        XCTAssertEqual(createError(fromCode: 403), NetworkError.forbidden, "Should convert to proper error")
+        XCTAssertEqual(createError(fromCode: -999), NetworkError.cancelled, "Should convert to proper error")
+    }
+
+    func test_whenProvidingInvalidErrorCode_shouldNotCreateNetworkError() {
+        //  given:
+        let codesRange = createArray(from: 200, to: 399)
+
+        //  then:
+        for code in codesRange {
+            let error = createError(fromCode: code, message: nil)
+            XCTAssertNil(error, "Should not create an error")
+        }
     }
 
     func test_whenProvidingInvalidRequestErrorCode_shouldCreateNetworkErrorOfProperType() {
@@ -53,6 +65,41 @@ final class NetworkErrorTest: XCTestCase {
             let expectedError = NetworkError.custom(code: code, message: fixtureMessage)
             XCTAssertEqual(error, expectedError, "Should convert to proper error")
         }
+    }
+    
+    func test_convertingNSError_shouldReturnProperNetworkError() {
+        //  given:
+        let fixtureCode = 408
+        let fixtureNSError = NSError(domain: "", code: fixtureCode, userInfo: nil)
+        
+        //  when:
+        let error = NetworkError(error: fixtureNSError)
+        
+        //  then:
+        let expectedError = NetworkError.invalidRequest(code: fixtureCode, message: fixtureNSError.localizedDescription)
+        XCTAssertEqual(error, expectedError, "Should convert to proper error")
+    }
+
+    func test_convertingUrlResponseWithError_shouldReturnProperNetworkError() {
+        //  given:
+        let fixtureResponse = HTTPURLResponse(url: URL(string: "https://ng.com")!, statusCode: 401, httpVersion: nil, headerFields: nil)
+
+        //  when:
+        let error = NetworkError(urlResponse: fixtureResponse!)
+
+        //  then:
+        XCTAssertEqual(error, NetworkError.unauthorized, "Should convert to proper error")
+    }
+
+    func test_convertingUrlResponseWithoutError_shouldNotReturnNetworkError() {
+        //  given:
+        let fixtureResponse = HTTPURLResponse(url: URL(string: "https://ng.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+
+        //  when:
+        let error = NetworkError(urlResponse: fixtureResponse!)
+
+        //  then:
+        XCTAssertNil(error, "Should return no error")
     }
 }
 

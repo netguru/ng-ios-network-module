@@ -6,7 +6,7 @@
 import Foundation
 
 /// A structure containing data received form server, along with original network response object.
-public struct NetworkResponse {
+public struct NetworkResponse: Equatable {
 
     /// A raw response data.
     public let data: Data?
