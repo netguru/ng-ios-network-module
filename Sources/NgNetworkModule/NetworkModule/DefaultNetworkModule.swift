@@ -1,9 +1,14 @@
+//
+//  DefaultNetworkModule.swift
+//  Netguru iOS Network Module
+//
+
 import Foundation
 
 // MARK: - DefaultNetworkModule.
 
 /// Default implementation of NetworkModule.
-final public class DefaultNetworkModule: NetworkModule {
+public final class DefaultNetworkModule: NetworkModule {
     private let requestBuilder: RequestBuilder
     private let urlSession: NetworkSession
     private let actions: [NetworkModuleAction]

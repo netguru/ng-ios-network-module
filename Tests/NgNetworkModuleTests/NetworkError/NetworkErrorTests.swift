@@ -66,15 +66,15 @@ final class NetworkErrorTest: XCTestCase {
             XCTAssertEqual(error, expectedError, "Should convert to proper error")
         }
     }
-    
+
     func test_convertingNSError_shouldReturnProperNetworkError() {
         //  given:
         let fixtureCode = 408
         let fixtureNSError = NSError(domain: "", code: fixtureCode, userInfo: nil)
-        
+
         //  when:
         let error = NetworkError(error: fixtureNSError)
-        
+
         //  then:
         let expectedError = NetworkError.invalidRequest(code: fixtureCode, message: fixtureNSError.localizedDescription)
         XCTAssertEqual(error, expectedError, "Should convert to proper error")

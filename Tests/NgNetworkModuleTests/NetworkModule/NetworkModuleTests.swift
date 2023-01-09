@@ -36,7 +36,7 @@ final class DefaultNetworkModuleTest: XCTestCase {
         )
     }
 
-    /// MARK: - Handling NetworkRequest:
+    // MARK: - Handling NetworkRequest:
 
     func test_whenRequestFailsToParse_shouldNotExecuteIt_andReturnProperError() {
         //  given:
@@ -107,7 +107,7 @@ final class DefaultNetworkModuleTest: XCTestCase {
         XCTAssertNil(fakeNetworkModuleAction.lastResponsePostExecutionActionPerformedOn, "Should NOT trigger any post-execution actions")
     }
 
-    /// MARK: - Handling UrlRequest:
+    // MARK: - Handling UrlRequest:
 
     func test_whenProvidingUrlRequest_shouldExecuteIt() {
         // when:
