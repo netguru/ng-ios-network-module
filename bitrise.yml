@@ -44,6 +44,7 @@ workflows:
                bundle install
 
   # Create a xcodeproj file for test.
+  
   swift-test:
     steps:
       - script:
