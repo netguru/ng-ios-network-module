@@ -11,11 +11,6 @@ if defined?(github)
   warn "Please provide a summary in the Pull Request description" if github.pr_body.length < 5
 end
 
-# Show all build errors, warnings and unit tests results generated from xcodebuild
-xcode_summary.ignored_files = 'Pods/**'
-xcode_summary.inline_mode = true
-xcode_summary.report "#{ENV["XCODE_TEST_JSON_REPORT_PATH"]}"
-
 # Generate report
 report = xcov.produce_report(
   scheme: project_scheme,
