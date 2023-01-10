@@ -25,4 +25,4 @@ test:
 report:
     default:
         - sh:
-            command: 'echo "add danger here"'
+            command: "bundle exec danger"
