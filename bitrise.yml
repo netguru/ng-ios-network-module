@@ -36,18 +36,18 @@ workflows:
   bundle-install:
     steps:
       - script:
-          title: 'bundle-install'
+          title: 'Run Bundler'
           inputs:
             - content: |-
-               gem uninstall bundler --force
-               gem install bundler --force
+               gem update --system 3.2.3
+               gem install bundler
                bundle install
 
   # Create a xcodeproj file for test.
   swift-test:
     steps:
       - script:
-          title: 'Create a xcodeproj file for test'
+          title: 'Create a xcodeproj file for tests'
           inputs:
             - content: |-
                gem install xcov
@@ -59,7 +59,7 @@ workflows:
   swiftformat-install:
     steps:
       - brew-install:
-          title: 'swiftformat-install'
+          title: 'Install SwiftFormat'
           inputs:
             - packages: "swiftformat"
 
@@ -68,9 +68,9 @@ workflows:
   run-highway:
     steps:
       - script:
-          title: 'bundle exec fastlane highway'
+          title: 'Run Highway'
           inputs:
-            - content: bundle exec fastlane highway preset:$HIGHWAY_PRESET
+            - content: bundle exec fastlane highway preset:$HIGHWAY_PRESET --verbose
 
   # Deploy build artifacts to bitrise.io.
 
