@@ -3,7 +3,7 @@
 //  Netguru iOS Network Module
 //
 
-import UIKit
+import Foundation
 import Network
 
 /// An abstraction describing networking module for the app.
