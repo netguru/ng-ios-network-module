@@ -25,4 +25,6 @@ test:
 report:
     default:
         - sh:
-            command: 'echo "add danger here"'
+            command: "bundle exec danger"
+        - copy_artifacts:
+            path: $(ENV:BITRISE_DEPLOY_DIR)
