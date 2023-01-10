@@ -19,7 +19,7 @@ xcode_summary.report "#{ENV["XCODE_TEST_JSON_REPORT_PATH"]}"
 # Generate report
 report = xcov.produce_report(
   scheme: project_scheme,
-  workspace: project_workspace,
+  project: project_workspace,
   skip_slack: true,
   only_project_targets: true,
 )
