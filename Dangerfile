@@ -4,7 +4,7 @@
 
 # Configuration
 project_scheme = 'NgNetworkModule-Package'
-project_workspace = 'NgNetworkModule.xcodeproj'
+project= './NgNetworkModule.xcodeproj'
 
 # Ensure there is a summary for a PR
 if defined?(github)
@@ -19,7 +19,7 @@ xcode_summary.report "#{ENV["XCODE_TEST_JSON_REPORT_PATH"]}"
 # Generate report
 report = xcov.produce_report(
   scheme: project_scheme,
-  project: project_workspace,
+  project: project,
   skip_slack: true,
   only_project_targets: true,
 )
