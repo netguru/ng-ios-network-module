@@ -6,7 +6,7 @@
 import Foundation
 
 /// A structure containing data received form server, along with original network response object.
-public struct NetworkResponse {
+public struct NetworkResponse: Equatable {
 
     /// A raw response data.
     public let data: Data?
@@ -22,7 +22,10 @@ public extension NetworkResponse {
     /// - Parameter responseType: a response type.
     /// - Parameter decoder: a JSON decoder.
     /// - Returns: a resulting response structure.
-    func decoded<T: Decodable>(into responseType: T.Type, decoder: JSONDecoder = JSONDecoder()) -> Result<T, NetworkError> {
+    func decoded<T: Decodable>(
+        into responseType: T.Type,
+        decoder: JSONDecoder = JSONDecoder()
+    ) -> Result<T, NetworkError> {
         guard let data = data else {
             return .failure(NetworkError.noResponseData)
         }

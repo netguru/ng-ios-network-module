@@ -7,7 +7,7 @@ import Foundation
 
 @testable import NgNetworkModule
 
-class FakeAuthenticationTokenProvider: AuthenticationTokenProvider {
+final class FakeAuthenticationTokenProvider: AuthenticationTokenProvider {
     var simulatedAuthenticationToken: String?
 
     var authenticationToken: String {

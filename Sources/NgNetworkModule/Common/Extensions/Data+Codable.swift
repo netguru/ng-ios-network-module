@@ -24,7 +24,7 @@ extension Data {
     /// - Throws: a NetworkError thrown when the decoding fails.
     func decoded<T: Decodable>(into type: T.Type, decoder: JSONDecoder = JSONDecoder()) throws -> T {
         do {
-            return try JSONDecoder().decode(type, from: self)
+            return try decoder.decode(type, from: self)
         } catch {
             throw NetworkError.responseParsingFailed
         }
