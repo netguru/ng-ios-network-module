@@ -15,7 +15,10 @@ public protocol NetworkSession: AnyObject {
     ///   - request: an URL request.
     ///   - completionHandler: a request completion callback.
     /// - Returns: an URL data task.
-    func dataTask(with request: URLRequest, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+    func dataTask(
+        with request: URLRequest,
+        completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void
+    ) -> URLSessionDataTask
 }
 
 extension URLSession: NetworkSession {}

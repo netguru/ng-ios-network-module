@@ -6,10 +6,10 @@
 import Foundation
 
 /// Default operations executor implementation, utilising concurrent background execution queue.
-final class BackgroundQueueOperationsExecutor: AsynchronousOperationsExecutor {
+public final class BackgroundQueueOperationsExecutor: AsynchronousOperationsExecutor {
 
     /// - SeeAlso: AsynchronousOperationsExecutor.type
-    let type = AsynchronousExecutorType.backgroundConcurrent
+    public let type = AsynchronousExecutorType.backgroundConcurrent
 
     /// A default, public initializer.
     public init() {}
