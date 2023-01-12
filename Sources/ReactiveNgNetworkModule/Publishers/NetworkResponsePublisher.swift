@@ -35,7 +35,11 @@ public extension Publishers {
         /// - SeeAlso: Publisher.receive(subscriber:)
         public func receive<S: Subscriber>(subscriber: S)
             where NetworkResponsePublisher.Failure == S.Failure, NetworkResponsePublisher.Output == S.Input {
-            let subscription = NetworkResponseSubscription(urlRequest: urlRequest, networkModule: networkModule, subscriber: subscriber)
+            let subscription = NetworkResponseSubscription(
+                urlRequest: urlRequest, 
+                networkModule: networkModule, 
+                subscriber: subscriber
+            )
             subscriber.receive(subscription: subscription)
         }
     }
