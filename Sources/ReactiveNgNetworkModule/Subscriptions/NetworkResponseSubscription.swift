@@ -35,6 +35,26 @@ public extension Publishers {
             }
         }
 
+        /// A supplementary NetworkResponseSubscription initializer.
+        /// To be used when executing a network request.
+        ///
+        /// - Parameters:
+        ///   - request: a network request to execute.
+        ///   - networkModule: a network module executing the request.
+        ///   - subscriber: a subscriber to be notified.
+        public init(request: NetworkRequest, networkModule: NetworkModule, subscriber: S) {
+            self.subscriber = subscriber
+            networkModule.perform(request: request) { result in
+                switch result {
+                case let .success(response):
+                    _ = subscriber.receive(response)
+                    subscriber.receive(completion: Subscribers.Completion.finished)
+                case let .failure(error):
+                    subscriber.receive(completion: Subscribers.Completion.failure(error))
+                }
+            }
+        }
+
         /// - SeeAlso: Subscription.request(demand:)
         public func request(_ demand: Subscribers.Demand) {}
 

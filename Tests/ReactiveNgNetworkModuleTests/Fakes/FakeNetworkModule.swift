@@ -29,4 +29,16 @@ extension FakeNetworkModule {
     func simulateUrlRequestSuccess(response: NetworkResponse) {
         urlRequestCompletion?(.success(response))
     }
+
+    func simulateUrlRequestFailure(error: NetworkError) {
+        urlRequestCompletion?(.failure(error))
+    }
+
+    func simulateNetworkRequestSuccess(response: NetworkResponse) {
+        networkRequestCompletion?(.success(response))
+    }
+
+    func simulateNetworkRequestFailure(error: NetworkError) {
+        networkRequestCompletion?(.failure(error))
+    }
 }
