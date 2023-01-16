@@ -1,5 +1,5 @@
 //
-//  NetworkModuleReactiveAPITests.swift
+//  NetworkModulePrimaryReactiveAPITests.swift
 //  Netguru iOS Network Module
 //
 
@@ -12,7 +12,6 @@ import Combine
 
 final class NetworkModuleReactiveAPITests: XCTestCase {
     var lastRecordedResponse: NetworkResponse?
-    var lastRecordedDecodedResponse: Decodable?
     var lastRecordedError: NetworkError?
     var publisherDidFinish: Bool?
     var fixtureUrlRequest: URLRequest!
@@ -25,7 +24,6 @@ final class NetworkModuleReactiveAPITests: XCTestCase {
         fixtureNetworkRequest = FakeGetNetworkRequest()
         lastRecordedResponse = nil
         lastRecordedError = nil
-        lastRecordedDecodedResponse = nil
         publisherDidFinish = nil
         cancellables = []
 
@@ -34,7 +32,7 @@ final class NetworkModuleReactiveAPITests: XCTestCase {
         sut = FakeNetworkModule()
     }
 
-    // MARK: - Handling UrlRequest:
+    // MARK: - Handling UrlRequest success:
 
     func test_whenExecutingUrlRequestWithSuccess_shouldEmitEventWithPublisher() {
         //  given:
@@ -50,6 +48,8 @@ final class NetworkModuleReactiveAPITests: XCTestCase {
         XCTAssertEqual(publisherDidFinish, true, "Should finish publishing after request completion")
     }
 
+    // MARK: - Handling UrlRequest failure:
+
     func test_whenExecutingUrlRequestWithError_shouldEmitFailureWithPublisher() {
         //  given:
         let fixtureNetworkError = NetworkError.notFound
@@ -63,7 +63,7 @@ final class NetworkModuleReactiveAPITests: XCTestCase {
         XCTAssertNil(lastRecordedResponse, "Should NOT return a response")
     }
 
-    // MARK: - Handling NetworkRequest:
+    // MARK: - Handling NetworkRequest success:
 
     func test_whenExecutingNetworkRequestWithSuccess_shouldEmitEventWithPublisher() {
         //  given:
@@ -78,6 +78,8 @@ final class NetworkModuleReactiveAPITests: XCTestCase {
         XCTAssertEqual(lastRecordedResponse, fixtureNetworkResponse, "Should return a proper response")
         XCTAssertEqual(publisherDidFinish, true, "Should finish publishing after request completion")
     }
+
+    // MARK: - Handling NetworkRequest failure:
 
     func test_whenExecutingNetworkRequestWithError_shouldEmitFailureWithPublisher() {
         //  given:
