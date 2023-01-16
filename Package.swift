@@ -17,12 +17,13 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.4"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.4")
     ],
     targets: [
         .target(
             name: "NgNetworkModule",
-            dependencies: []),
+            dependencies: []
+        ),
         .target(
             name: "ReactiveNgNetworkModule",
             dependencies: ["NgNetworkModule"]
