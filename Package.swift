@@ -9,17 +9,32 @@ let package = Package(
     products: [
         .library(
             name: "NgNetworkModule",
-            targets: ["NgNetworkModule"]),
+            targets: ["NgNetworkModule"]
+        ),
+        .library(
+            name: "ReactiveNgNetworkModule",
+            targets: ["ReactiveNgNetworkModule"]
+        )
     ],
     dependencies: [
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.4"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.4")
     ],
     targets: [
         .target(
             name: "NgNetworkModule",
-            dependencies: []),
+            dependencies: []
+        ),
+        .target(
+            name: "ReactiveNgNetworkModule",
+            dependencies: ["NgNetworkModule"]
+        ),
         .testTarget(
             name: "NgNetworkModuleTests",
-            dependencies: ["NgNetworkModule"]),
+            dependencies: ["NgNetworkModule"]
+        ),
+        .testTarget(
+            name: "ReactiveNgNetworkModuleTests",
+            dependencies: ["ReactiveNgNetworkModule"]
+        )
     ]
 )
