@@ -9,18 +9,17 @@ import Foundation
 @testable import ReactiveNgNetworkModule
 
 final class FakeNetworkModule: NetworkModule {
-    var simulatedURLSessionDataTask: URLSessionDataTask?
     private var networkRequestCompletion: ((Result<NetworkResponse, NetworkError>) -> Void)?
     private var urlRequestCompletion: ((Result<NetworkResponse, NetworkError>) -> Void)?
 
     func perform(request: NetworkRequest, completion: ((Result<NetworkResponse, NetworkError>) -> Void)?) -> URLSessionTask? {
         networkRequestCompletion = completion
-        return simulatedURLSessionDataTask
+        return nil
     }
 
     func perform(urlRequest: URLRequest, completion: ((Result<NetworkResponse, NetworkError>) -> Void)?) -> URLSessionTask {
         urlRequestCompletion = completion
-        return simulatedURLSessionDataTask ?? URLSession.shared.dataTask(with: urlRequest)
+        return URLSession.shared.dataTask(with: urlRequest)
     }
 }
 

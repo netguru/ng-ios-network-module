@@ -39,17 +39,19 @@ public extension NetworkModule {
     /// - Parameters:
     ///   - request: a request to execute.
     ///   - responseType: a response type.
+    ///   - decoder: a JSON decoder.
     ///   - completion: a completion callback.
     /// - Returns: a network session task (if created).
     @discardableResult func performAndDecode<T: Decodable>(
         request: NetworkRequest,
         responseType: T.Type,
+        decoder: JSONDecoder = JSONDecoder(),
         completion: ((Result<T, NetworkError>) -> Void)?
     ) -> URLSessionTask? {
         perform(request: request) { result in
             switch result {
             case let .success(response):
-                completion?(response.decoded(into: responseType))
+                completion?(response.decoded(into: responseType, decoder: decoder))
             case let .failure(error):
                 completion?(.failure(error))
             }
@@ -61,17 +63,19 @@ public extension NetworkModule {
     /// - Parameters:
     ///   - urlRequest: a request to execute.
     ///   - responseType: a response type.
+    ///   - decoder: a JSON decoder.
     ///   - completion: a completion callback.
     /// - Returns: a network session task.
     @discardableResult func performAndDecode<T: Decodable>(
         urlRequest: URLRequest,
         responseType: T.Type,
+        decoder: JSONDecoder = JSONDecoder(),
         completion: ((Result<T, NetworkError>) -> Void)?
     ) -> URLSessionTask {
         perform(urlRequest: urlRequest) { result in
             switch result {
             case let .success(response):
-                completion?(response.decoded(into: responseType))
+                completion?(response.decoded(into: responseType, decoder: decoder))
             case let .failure(error):
                 completion?(.failure(error))
             }

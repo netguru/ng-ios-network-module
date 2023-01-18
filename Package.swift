@@ -14,6 +14,10 @@ let package = Package(
         .library(
             name: "ReactiveNgNetworkModule",
             targets: ["ReactiveNgNetworkModule"]
+        ),
+        .library(
+            name: "ConcurrentNgNetworkModule",
+            targets: ["ConcurrentNgNetworkModule"]
         )
     ],
     dependencies: [
@@ -28,6 +32,10 @@ let package = Package(
             name: "ReactiveNgNetworkModule",
             dependencies: ["NgNetworkModule"]
         ),
+        .target(
+            name: "ConcurrentNgNetworkModule",
+            dependencies: ["NgNetworkModule"]
+        ),
         .testTarget(
             name: "NgNetworkModuleTests",
             dependencies: ["NgNetworkModule"]
@@ -35,6 +43,10 @@ let package = Package(
         .testTarget(
             name: "ReactiveNgNetworkModuleTests",
             dependencies: ["ReactiveNgNetworkModule"]
+        ),
+        .testTarget(
+            name: "ConcurrentNgNetworkModuleTests",
+            dependencies: ["ConcurrentNgNetworkModule"]
         )
     ]
 )
