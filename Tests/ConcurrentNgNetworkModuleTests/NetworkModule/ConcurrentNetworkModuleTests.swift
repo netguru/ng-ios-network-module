@@ -20,7 +20,7 @@ final class ConcurrentNetworkModuleTests: XCTestCase {
 
     override func setUp() {
         fixtureUrlRequest = URLRequest(url: URL(string: "https://netguru.com/welcome")!)
-        fixtureNetworkRequest = FakeGetNetworkRequest()
+        fixtureNetworkRequest = FakeDeleteNetworkRequest()
         lastRecordedResponse = nil
         lastRecordedDecodedResponse = nil
         lastRecordedError = nil
@@ -47,17 +47,17 @@ final class ConcurrentNetworkModuleTests: XCTestCase {
 
     func test_whenExecutingUrlRequestWithSuccess_andDecodingResponse_shouldReturnDecodedResponse() async {
         //  given:
-        let fakeResponse = FakeNetworkResponse(foo: "bar", bar: 1)
+        let fakeResponse = FakeEmptyNetworkResponse()
         let encodedResponse = try? JSONEncoder().encode(fakeResponse)
         let fixtureNetworkResponse = makeNetworkResponse(data: encodedResponse, code: 200)
         fakeNetworkModule.simulatedNetworkResponse = fixtureNetworkResponse
 
         //  when:
-        try? await performAndDecode(urlRequest: fixtureUrlRequest, responseType: FakeNetworkResponse.self)
+        try? await performAndDecode(urlRequest: fixtureUrlRequest, responseType: FakeEmptyNetworkResponse.self)
 
         //  then:
         XCTAssertNil(lastRecordedError, "Should NOT return an error")
-        XCTAssertEqual(lastRecordedDecodedResponse as? FakeNetworkResponse, fakeResponse, "Should return a proper response")
+        XCTAssertEqual(lastRecordedDecodedResponse as? FakeEmptyNetworkResponse, fakeResponse, "Should return a proper response")
     }
 
     // MARK: - Handling failed UrlRequest:
@@ -81,7 +81,7 @@ final class ConcurrentNetworkModuleTests: XCTestCase {
         fakeNetworkModule.simulatedNetworkError = fixtureNetworkError
 
         //  when:
-        try? await performAndDecode(urlRequest: fixtureUrlRequest, responseType: FakeNetworkResponse.self)
+        try? await performAndDecode(urlRequest: fixtureUrlRequest, responseType: FakeEmptyNetworkResponse.self)
 
         //  then:
         XCTAssertEqual(lastRecordedError, fixtureNetworkError, "Should return an error")
@@ -105,17 +105,17 @@ final class ConcurrentNetworkModuleTests: XCTestCase {
 
     func test_whenExecutingNetworkRequestWithSuccess_andDecodingResponse_shouldReturnDecodedResponse() async {
         //  given:
-        let fakeResponse = FakeNetworkResponse(foo: "bar", bar: 1)
+        let fakeResponse = FakeEmptyNetworkResponse()
         let encodedResponse = try? JSONEncoder().encode(fakeResponse)
         let fixtureNetworkResponse = makeNetworkResponse(data: encodedResponse, code: 200)
         fakeNetworkModule.simulatedNetworkResponse = fixtureNetworkResponse
 
         //  when:
-        try? await performAndDecode(request: fixtureNetworkRequest, responseType: FakeNetworkResponse.self)
+        try? await performAndDecode(request: fixtureNetworkRequest, responseType: FakeEmptyNetworkResponse.self)
 
         //  then:
         XCTAssertNil(lastRecordedError, "Should NOT return an error")
-        XCTAssertEqual(lastRecordedDecodedResponse as? FakeNetworkResponse, fakeResponse, "Should return a proper response")
+        XCTAssertEqual(lastRecordedDecodedResponse as? FakeEmptyNetworkResponse, fakeResponse, "Should return a proper response")
     }
 
     // MARK: - Handling failed NetworkRequest:
@@ -139,7 +139,7 @@ final class ConcurrentNetworkModuleTests: XCTestCase {
         fakeNetworkModule.simulatedNetworkError = fixtureNetworkError
 
         //  when:
-        try? await performAndDecode(request: fixtureNetworkRequest, responseType: FakeNetworkResponse.self)
+        try? await performAndDecode(request: fixtureNetworkRequest, responseType: FakeEmptyNetworkResponse.self)
 
         //  then:
         XCTAssertEqual(lastRecordedError, fixtureNetworkError, "Should return an error")
@@ -148,6 +148,13 @@ final class ConcurrentNetworkModuleTests: XCTestCase {
 }
 
 extension ConcurrentNetworkModuleTests {
+
+    struct FakeDeleteNetworkRequest: NetworkRequest {
+        let path = "/user/1"
+        let method = NetworkRequestType.delete
+    }
+
+    struct FakeEmptyNetworkResponse: Codable, Equatable {}
 
     var fakeNetworkModule: FakeNetworkModule {
         sut as! FakeNetworkModule
