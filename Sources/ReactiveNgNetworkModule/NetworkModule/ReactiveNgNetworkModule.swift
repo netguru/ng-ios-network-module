@@ -27,7 +27,7 @@ public extension NetworkModule {
         Publishers.NetworkResponsePublisher(request: request, networkModule: self)
     }
 
-    /// A convenience method allowing to execute an URL request, parse a response and return is as a Publisher.
+    /// A convenience method allowing to execute an URL request, parse a response and return it as a Publisher.
     ///
     /// - Parameters:
     ///   - urlRequest: an URL request to execute.
@@ -43,7 +43,7 @@ public extension NetworkModule {
             .handleAndDecode(to: responseType, decoder: decoder)
     }
 
-    /// A convenience method allowing to execute a network request, parse a response and return is as a Publisher.
+    /// A convenience method allowing to execute a network request, parse a response and return it as a Publisher.
     ///
     /// - Parameters:
     ///   - request: a network request to execute.
