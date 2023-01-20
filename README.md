@@ -177,7 +177,7 @@ networkModule.perform(request: networkRequest) { ... }
 - Defining custom pre/post execution request actions:
 ```
 /// An Action extracting an updated Access Token from a received Network Response:
-struct RetrieveAccessTokeAction: NetworkModuleAction {
+struct RetrieveAccessTokenAction: NetworkModuleAction {
     private let accessTokenHeaderName = "Access-token" 
         
     func performBeforeExecutingNetworkRequest(request: NetworkRequest?, urlRequest: inout URLRequest) {
@@ -195,12 +195,41 @@ struct RetrieveAccessTokeAction: NetworkModuleAction {
 ```
 Adding the Action to the Network Module:
 ```
-let action = RetrieveAccessTokeAction()
+let action = RetrieveAccessTokenAction()
 let networkModule = DefaultNetworkModule(
 	requestBuilder: requestBuilder,
 	actions: [action] // <-- Include additional Actions here
 )
 ```
+
+### Error handling
+- `NetworkError.requestParsingFailed`\
+**Description**: The request builder failed to parse the `NetworkRequest` structure into an `URLRequest`.    
+**Solution**: Ensure that the non-trivial request properties (especially `parameters`, `body` or `bodyData`) are properly defined.
+- `NetworkError.responseParsingFailed`\
+**Description**: Although the request succeeded, the `NetworkModule` failed to decoded received response into a provided data type.  
+**Solution**: Ensure an expected response type matches what is returned from the backend. 
+- `NetworkError.noResponseData`\
+**Description**: Although the request succeeded, the received response contained no data to decode.     
+**Solution**: Ensure the endpoint you try to call is supposed to return a non-empty response.
+- `NetworkError.serverError(code:message:)`\
+**Description**: The request caused a server error.     
+**Solution**: Report the error to the backend team.
+- `NetworkError.notFound`\
+**Description**: The requested endpoint cannot be found.      
+**Solution**: Ensure the request path is correct.
+- `NetworkError.forbidden`\
+**Description**: The requested endpoint requires authentication.      
+**Solution**: Ensure that you included a valid Access Token in the request.
+- `NetworkError.unauthorized`\
+**Description**: The provided access token does not allow you to access the requested resource.      
+**Solution**: Reach out to the backend team and verify access level for the resource.
+- `NetworkError.invalidRequest(code:message:)`\
+**Description**: Any other request-related error (4XX error code).      
+**Solution**: Ensure the outgoing request is according to the backend specification.
+- `NetworkError.cancelled`\
+**Description**: The request has been cancelled by the user.      
+**Solution**: Not treated as an error!
 
 ### Running sample application
 
