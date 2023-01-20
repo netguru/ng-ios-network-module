@@ -1,5 +1,3 @@
-- TODO: add a logo
-
 # Netguru Networking Module
 
 Welcome to the **Netguru Networking Module**.\
@@ -9,9 +7,9 @@ Welcome to the **Netguru Networking Module**.\
 * Pure Swift
 * Intuitive, simple API
 * Protocol-oriented implementation
-* Almost 98% Unit Tests coverage
-* Support for reactive programming (Combine)
-* Support for modern Swift concurrency (async/await)
+* Extensive Unit Tests coverage
+* Support for reactive programming (`Combine`)
+* Support for modern Swift concurrency (`async/await`)
 * Extendable with configurable actions
 
 ## Integration
@@ -19,7 +17,6 @@ Welcome to the **Netguru Networking Module**.\
 ### Requirements
 * iOS 13+
 * macOS 10.15+
-* [Swift Package Manager](https://swift.org/package-manager/)
 
 ### Adding module to your app
 
@@ -49,11 +46,11 @@ The module is available in 3 variants:
 ```
 import NgNetworkModule
 ```
-- Reactive API (Combine) - a reactive API emitting an answer as an event, or an error.
+- Reactive API (`Combine`) - a reactive API emitting an answer as an event, or an error.
 ```
 import ReactiveNgNetworkModule
 ```
-- Concurrent API (async/await) - an API utilising modern Swift concurrency.
+- Concurrent API (`async/await`) - an API utilising modern Swift concurrency.
 ```
 import ConcurrentNgNetworkModule
 ```
@@ -69,7 +66,7 @@ let networkModule = DefaultNetworkModule(requestBuilder: requestBuilder)
 
 ### Creating and using automatic request / response parsing:
 
-In order to parse correctly, the request description must conform to **NetworkRequest** protocol:
+In order to parse correctly, the request description must conform to `NetworkRequest` protocol:
 
 ```
 struct SampleGetNetworkRequest: NetworkRequest {
@@ -124,7 +121,7 @@ networkModule.performAndDecode(request: networkRequest, responseType: ExpectedRe
     }
 }
 ``` 
-- Reactive API (Combine) - a reactive API emitting an answer as an event, or an error:
+- Reactive API (`Combine`) - a reactive API emitting an answer as an event, or an error:
 ```
 perform(request: networkRequest)
 perform(urlRequest: urlRequest)
@@ -144,7 +141,7 @@ performAndDecode(urlRequest: urlRequest, responseType: ExpectedResponse.self)
             })
         .store(in: &cancellables)
 ```
-- Concurrent API (async/await) - an API utilising modern Swift concurrency:
+- Concurrent API (`async/await`) - an API utilising modern Swift concurrency:
 ```
 do {
     let response = try await networkModule.perform(request: networkRequest)
@@ -233,7 +230,7 @@ let networkModule = DefaultNetworkModule(
 
 ### Running sample application
 
-- TODO: project description
+Coming soon...
 
 ## Related repositories
 
