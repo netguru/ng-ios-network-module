@@ -7,6 +7,7 @@ import Foundation
 import Combine
 import NgNetworkModule
 
+@available(macOS 10.15, *)
 public extension Publishers {
 
     /// A Publisher allowing to execute an URLRequest using a provided NetworkModule.
