@@ -32,13 +32,13 @@ public extension NetworkModule {
     /// - Parameters:
     ///   - urlRequest: an URL request to execute.
     ///   - responseType: an expected response type.
-    ///   - decoder: a JSON decoder to user.
+    ///   - decoder: a top level decoder to user.
     /// - Returns: a publisher to subscribe to.
-    func performAndDecode<T: Decodable>(
+    func performAndDecode<T: Decodable, Coder: TopLevelDecoder>(
         urlRequest: URLRequest,
         responseType: T.Type,
-        decoder: JSONDecoder = JSONDecoder()
-    ) -> any Publisher<T, NetworkError> {
+        decoder: Coder = JSONDecoder()
+    ) -> any Publisher<T, NetworkError> where Coder.Input == Data {
         Publishers.NetworkResponsePublisher(urlRequest: urlRequest, networkModule: self)
             .handleAndDecode(to: responseType, decoder: decoder)
     }
@@ -48,13 +48,13 @@ public extension NetworkModule {
     /// - Parameters:
     ///   - request: a network request to execute.
     ///   - responseType: an expected response type.
-    ///   - decoder: a JSON decoder to user.
+    ///   - decoder: a top level decoder to user.
     /// - Returns: a publisher to subscribe to.
-    func performAndDecode<T: Decodable>(
+    func performAndDecode<T: Decodable, Coder: TopLevelDecoder>(
         request: NetworkRequest,
         responseType: T.Type,
-        decoder: JSONDecoder = JSONDecoder()
-    ) -> any Publisher<T, NetworkError> {
+        decoder: Coder = JSONDecoder()
+    ) -> AnyPublisher<T, NetworkError> where Coder.Input == Data {
         Publishers.NetworkResponsePublisher(request: request, networkModule: self)
             .handleAndDecode(to: responseType, decoder: decoder)
     }
