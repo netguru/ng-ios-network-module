@@ -32,7 +32,7 @@ public extension NetworkModule {
     /// - Parameters:
     ///   - urlRequest: an URL request to execute.
     ///   - responseType: an expected response type.
-    ///   - decoder: a top level decoder to user.
+    ///   - decoder: a top level decoder to use.
     /// - Returns: a publisher to subscribe to.
     func performAndDecode<T: Decodable, Coder: TopLevelDecoder>(
         urlRequest: URLRequest,
@@ -48,7 +48,7 @@ public extension NetworkModule {
     /// - Parameters:
     ///   - request: a network request to execute.
     ///   - responseType: an expected response type.
-    ///   - decoder: a top level decoder to user.
+    ///   - decoder: a top level decoder to use.
     /// - Returns: a publisher to subscribe to.
     func performAndDecode<T: Decodable, Coder: TopLevelDecoder>(
         request: NetworkRequest,
