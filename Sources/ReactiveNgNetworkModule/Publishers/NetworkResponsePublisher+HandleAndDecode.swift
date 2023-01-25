@@ -13,13 +13,13 @@ extension Publisher where Output == NetworkResponse, Failure == NetworkError {
     ///
     /// - Parameters:
     ///   - responseType: an expected response type.
-    ///   - decoder: a JSON decoder to use.
+    ///   - decoder: a top level decoder to use.
     /// - Returns: a handled (and possibly decoded) response publisher.
-    func handleAndDecode<T: Decodable>(
+    func handleAndDecode<T: Decodable, Coder: TopLevelDecoder>(
         to responseType: T.Type,
-        decoder: JSONDecoder = JSONDecoder()
-    ) -> AnyPublisher<T, NetworkError> {
-        tryMap { response in
+        decoder: Coder = JSONDecoder()
+    ) -> AnyPublisher<T, NetworkError> where Coder.Input == Data {
+        tryMap { response -> Data in
             guard let data = response.data else {
                 throw NetworkError.noResponseData
             }
