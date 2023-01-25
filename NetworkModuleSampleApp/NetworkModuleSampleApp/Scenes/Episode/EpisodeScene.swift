@@ -33,7 +33,7 @@ struct EpisodeScene<T: EpisodeViewModel>: View {
         .navigationTitle("\(viewModel.episode.name ?? "")")
         .toolbar {
             Button {
-                
+                // TODO: Add some fun things :) 
             } label: {
                 Image(systemName: "heart")
                     .resizable()

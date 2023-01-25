@@ -10,6 +10,6 @@ struct EpisodeModel: Identifiable {
     var airDate: String?
     var director: String?
     var writer: String?
-    var characters: [String]
+    var characters: [String]?
     var imageURL: String?
 }

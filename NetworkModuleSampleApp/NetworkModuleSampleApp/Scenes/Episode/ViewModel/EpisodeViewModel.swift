@@ -9,7 +9,7 @@ final class EpisodeViewModel: EpisodeViewModelProtocol {
     var requestType: NetworkRequestType
     
     /// Episode Publishers
-    @Published var episode: EpisodeModel = EpisodeModel(characters: [])
+    @Published var episode: EpisodeModel = EpisodeModel()
     var episodeId: String
     var episodePublished: Published<EpisodeModel> { _episode }
     var episodePublisher: Published<EpisodeModel>.Publisher { $episode}
