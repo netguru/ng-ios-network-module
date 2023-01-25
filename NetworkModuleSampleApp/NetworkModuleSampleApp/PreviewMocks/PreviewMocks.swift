@@ -1,9 +1,7 @@
 //
 //  PreviewMocks.swift
 //  NetworkModuleSampleApp
-//
-//  Created by Kemal Ekren on 25/01/2023.
-//
+
 
 import Foundation
 
