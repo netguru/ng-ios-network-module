@@ -10,14 +10,14 @@ enum NetworkRequestType: Equatable {
     case asyncAwait
 }
 
-enum EpisodeListViewStates: Equatable {
+enum EpisodeListViewState: Equatable {
     case loading
     case noData
     case loaded(EpisodeListModel)
     /// Could be created Custom error model
     case error(Error)
     
-    static func == (lhs: EpisodeListViewStates, rhs: EpisodeListViewStates) -> Bool {
+    static func == (lhs: EpisodeListViewState, rhs: EpisodeListViewState) -> Bool {
         switch (lhs, rhs) {
         case (.noData, .noData),
             (.loading, .loading):
@@ -34,8 +34,8 @@ enum EpisodeListViewStates: Equatable {
 
 protocol EpisodeListViewModelProtocol: AnyObject, ObservableObject {
     var requestType: NetworkRequestType { get }
-    var viewState: EpisodeListViewStates { get }
-    var viewStatePublished: Published<EpisodeListViewStates> { get }
-    var viewStatePublisher: Published<EpisodeListViewStates>.Publisher { get }
+    var viewState: EpisodeListViewState { get }
+    var viewStatePublished: Published<EpisodeListViewState> { get }
+    var viewStatePublisher: Published<EpisodeListViewState>.Publisher { get }
     func fetchData()
 }

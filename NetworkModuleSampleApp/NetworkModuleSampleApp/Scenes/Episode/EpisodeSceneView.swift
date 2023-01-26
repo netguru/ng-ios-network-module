@@ -1,10 +1,10 @@
 //
-//  EpisodeScene.swift
+//  EpisodeSceneView.swift
 //  NetworkModuleSampleApp
 
 import SwiftUI
 
-struct EpisodeScene<T: EpisodeViewModel>: View {
+struct EpisodeSceneView<T: EpisodeViewModel>: View {
     @StateObject var viewModel: T
     
     var body: some View {
@@ -12,9 +12,9 @@ struct EpisodeScene<T: EpisodeViewModel>: View {
     }
 }
 
-struct EpisodeScene_Previews: PreviewProvider {
+struct EpisodeSceneView_Previews: PreviewProvider {
     static var previews: some View {
         let mockViewModel = EpisodeViewModel(requestType: .classic, episodeId: "1")
-        EpisodeScene<EpisodeViewModel>(viewModel: mockViewModel)
+        EpisodeSceneView<EpisodeViewModel>(viewModel: mockViewModel)
     }
 }

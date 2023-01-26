@@ -7,8 +7,7 @@ import SwiftUI
 enum EpisodeViewStates: Equatable {
     case loading
     case noData
-    case loadedEpisode(EpisodeModel)
-    case loadedCharacters([CharacterModel])
+    case loadedEpisode(EpisodeModel, [CharacterModel])
     /// Could be created Custom error model
     case error(Error)
     
@@ -19,10 +18,8 @@ enum EpisodeViewStates: Equatable {
             return true
         case let (.error(e1), .error(e2)):
             return e1.localizedDescription == e2.localizedDescription
-        case let (.loadedEpisode(data1), .loadedEpisode(data2)):
-            return data1.id == data2.id
-        case let (.loadedCharacters(data1), .loadedCharacters(data2)):
-            return data1 == data2
+        case let (.loadedEpisode(data1, char1), .loadedEpisode(data2, char2)):
+            return data1.id == data2.id && char1 == char2
         default:
             return false
         }

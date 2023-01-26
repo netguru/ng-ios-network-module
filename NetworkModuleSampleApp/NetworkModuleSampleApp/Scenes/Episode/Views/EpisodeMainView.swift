@@ -21,12 +21,12 @@ struct EpisodeMainView<T: EpisodeViewModel>: View {
             }
             
             VStack(alignment: .leading) {
-                if let episode = loadedEpisode {
+                if let episode = loadedEpisode.episode {
                     EpisodeHeaderView(episode: episode)
                     Spacer()
                 }
                 
-                if let characters = loadedCharacter {
+                if let characters = loadedEpisode.character {
                     Text("Characters")
                         .foregroundColor(.white)
                         .font(.title3)
@@ -45,7 +45,7 @@ struct EpisodeMainView<T: EpisodeViewModel>: View {
                 }
             }
         }
-        .navigationTitle("\(loadedEpisode?.name ?? "")")
+        .navigationTitle("\(loadedEpisode.episode?.name ?? "")")
         .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbarBackground(
             Color("episodeBG"),
@@ -60,21 +60,14 @@ private extension EpisodeMainView {
         viewModel.viewState == .loading
     }
     
-    var loadedEpisode: EpisodeModel? {
+    var loadedEpisode: (episode: EpisodeModel?,
+                        character: [EpisodeCharacterRowModel]?) {
         switch viewModel.viewState {
-        case .loadedEpisode(let episode):
-            return episode
+        case .loadedEpisode(let episode, let characters):
+            let characterRow = characters.map(EpisodeCharacterRowModel.init)
+            return (episode,characterRow)
         default:
-            return nil
-        }
-    }
-    
-    var loadedCharacter: [EpisodeCharacterRowModel]? {
-        switch viewModel.viewState {
-        case .loadedCharacters(let characters):
-            return characters.map(EpisodeCharacterRowModel.init)
-        default:
-            return nil
+            return (nil,nil)
         }
     }
     
@@ -85,10 +78,10 @@ private extension EpisodeMainView {
         return nil
     }
 }
-
 struct EpisodeMainView_Previews: PreviewProvider {
     static var previews: some View {
         let mockViewModel = EpisodeViewModel(requestType: .classic, episodeId: "1")
         EpisodeMainView(viewModel: mockViewModel)
     }
 }
+

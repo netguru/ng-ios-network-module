@@ -12,7 +12,9 @@ struct EpisodeRowModel: Identifiable, Equatable {
     let director: String?
     let writer: String?
     let imageURL: String?
-    
+}
+
+extension EpisodeRowModel {
     init(model: EpisodeModel) {
         self.id = model.id
         self.name = model.name

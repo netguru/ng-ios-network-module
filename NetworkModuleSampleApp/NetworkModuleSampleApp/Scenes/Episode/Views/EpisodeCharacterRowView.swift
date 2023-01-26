@@ -5,7 +5,7 @@
 import SwiftUI
 
 struct EpisodeCharacterRowView: View {
-    var character: EpisodeCharacterRowModel
+    let character: EpisodeCharacterRowModel
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: character.imageURL ?? "")) { image in

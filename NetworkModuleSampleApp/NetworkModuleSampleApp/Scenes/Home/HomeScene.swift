@@ -34,7 +34,7 @@ struct HomeScene: View {
                     EpisodeListScene<EpisodeListViewModel>(viewModel: viewModel)
                 case .episode(let requestType, let episodeId):
                     let viewModel = EpisodeViewModel(requestType: requestType, episodeId: episodeId)
-                    EpisodeScene<EpisodeViewModel>(viewModel: viewModel)
+                    EpisodeSceneView<EpisodeViewModel>(viewModel: viewModel)
                 case .character:
                     CharacterScene()
                 }

@@ -6,11 +6,12 @@ import Foundation
 
 final class EpisodeViewModel: EpisodeViewModelProtocol {
     
-    var selectedNetworkingAPI: NetworkRequestType
+    let selectedNetworkingAPI: NetworkRequestType
+    let episodeId: String
     
     /// Episode Publishers
     @Published var viewState: EpisodeViewStates = .noData
-    var episodeId: String
+    
     var viewStatePublished: Published<EpisodeViewStates> { _viewState }
     var viewStatePublisher: Published<EpisodeViewStates>.Publisher { $viewState}
     
@@ -38,7 +39,7 @@ final class EpisodeViewModel: EpisodeViewModelProtocol {
 }
 
 private extension EpisodeViewModel {
-   func fetchCharacters(with id: String) {
+    func fetchCharacters(with id: String) {
         // TODO: Character Fetch
     }
     
