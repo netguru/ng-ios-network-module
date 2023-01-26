@@ -2,8 +2,7 @@
 //  EpisodeMainView.swift
 //  NetworkModuleSampleApp
 //
-//  Created by Kemal Ekren on 26/01/2023.
-//
+
 
 import SwiftUI
 
