@@ -15,12 +15,7 @@ struct EpisodeCharacterRowView: View {
                     .scaledToFill()
                     .clipped()
             } placeholder: {
-                //TODO: Will be replaced proper placeholder
-                Image("mock_character_1")
-                    .resizable()
-                    .frame(width: 100, height: 150)
-                    .scaledToFill()
-                    .clipped()
+               ImagePlaceHolder()
             }
             Text("\(character.name ?? "")")
                 .font(.headline)
