@@ -38,21 +38,21 @@ final class EpisodeViewModel: EpisodeViewModelProtocol {
 }
 
 private extension EpisodeViewModel {
-    private func fetchCharacters(with id: String) {
+   func fetchCharacters(with id: String) {
         // TODO: Character Fetch
     }
     
-    private func classicNetworkRequest() {
+    func classicNetworkRequest() {
         // TODO: Make Classic Network request
         
     }
     
-    private func combineNetworkRequest() {
+    func combineNetworkRequest() {
         // TODO: Make Combine Network request
         
     }
     
-    private func asynAwaitNetworkRequest() {
+    func asynAwaitNetworkRequest() {
         // TODO: Make Async/Await Network request
     }
 }
