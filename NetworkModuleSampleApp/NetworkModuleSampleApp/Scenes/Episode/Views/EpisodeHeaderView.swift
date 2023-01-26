@@ -18,13 +18,9 @@ struct EpisodeHeaderView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 300)
                 } placeholder: {
-                    //TODO: Will be replaced proper placeholder
-                    Image("mock_episode_image")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 300)
+                    ImagePlaceHolder()
                 }
-                    
+                
                 VStack(alignment: .leading) {
                     Text("\(episode.name ?? "")")
                         .foregroundColor(.white)

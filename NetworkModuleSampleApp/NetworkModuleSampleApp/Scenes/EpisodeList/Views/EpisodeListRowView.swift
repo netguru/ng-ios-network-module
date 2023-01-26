@@ -17,7 +17,6 @@ struct EpisodeListRowView: View {
                 .cornerRadius(20)
             
             HStack(alignment: .bottom) {
-                
                 AsyncImage(url: URL(string: episode.imageURL ?? "")) { image in
                     image
                         .resizable()
