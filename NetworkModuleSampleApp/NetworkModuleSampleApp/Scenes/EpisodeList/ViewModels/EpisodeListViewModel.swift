@@ -6,13 +6,13 @@
 import Foundation
 
 final class EpisodeListViewModel: EpisodeListViewModelProtocol {
-    @Published var episodeList: EpisodeListModel = EpisodeListModel(episodes: [])
+    @Published var viewState: EpisodeListViewStates = .noData
     
     var requestType: NetworkRequestType
     
-    var episodeListPublished: Published<EpisodeListModel> { _episodeList }
+    var viewStatePublished: Published<EpisodeListViewStates> { _viewState }
     
-    var episodeListPublisher: Published<EpisodeListModel>.Publisher { $episodeList }
+    var viewStatePublisher: Published<EpisodeListViewStates>.Publisher { $viewState }
     
     init(requestType: NetworkRequestType) {
         self.requestType = requestType
@@ -28,7 +28,9 @@ final class EpisodeListViewModel: EpisodeListViewModelProtocol {
             asynAwaitNetworkRequest()
         }
     }
-    
+}
+
+private extension EpisodeListViewModel {
     private func classicNetworkRequest() {
         // TODO: Make Classic Network request
 

@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct EpisodeListRowView: View {
-    var episode: EpisodeModel
+    var episode: EpisodeRowModel
     var requestType: NetworkRequestType
     
     var body: some View {
@@ -27,14 +27,7 @@ struct EpisodeListRowView: View {
                         .padding(.bottom, 20)
                         .padding(.leading, 10)
                 } placeholder: {
-                    //TODO: Will be replaced proper placeholder
-                    Image("mock_episode_image")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 140, height: 180)
-                        .clipped()
-                        .padding(.bottom, 20)
-                        .padding(.leading, 10)
+                    ImagePlaceHolder()
                 }
                 
                 VStack(alignment: .leading) {
@@ -74,7 +67,7 @@ struct EpisodeListRowView: View {
 
 struct EpisodeRowView_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeListRowView(episode: PreviewMocks.mockEpisodeModel, requestType: .classic)
+        EpisodeListRowView(episode: PreviewMocks.mockEpisodeRowModel, requestType: .classic)
             .previewLayout(.fixed(width: 400, height: 180))
     }
 }

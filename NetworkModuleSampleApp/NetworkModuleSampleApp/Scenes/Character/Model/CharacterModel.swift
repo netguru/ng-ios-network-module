@@ -5,12 +5,12 @@
 
 import Foundation
 
-struct CharacterModel: Identifiable {
-    var id: Int?
-    var name, status, species, gender: String?
-    var hair: String?
-    var alias: [String]?
-    var origin: String?
-    var abilities: [String]?
-    var imageURL: String?
+struct CharacterModel: Identifiable, Equatable {
+    let id: Int?
+    let name, status, species, gender: String?
+    let hair: String?
+    let alias: [String]?
+    let origin: String?
+    let abilities: [String]?
+    let imageURL: String?
 }

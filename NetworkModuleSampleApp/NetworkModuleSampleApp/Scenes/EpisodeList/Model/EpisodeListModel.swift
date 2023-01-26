@@ -5,6 +5,6 @@
 
 import Foundation
 
-struct EpisodeListModel {
-    var episodes: [EpisodeModel]
+struct EpisodeListModel: Equatable {
+    let episodes: [EpisodeModel]
 }

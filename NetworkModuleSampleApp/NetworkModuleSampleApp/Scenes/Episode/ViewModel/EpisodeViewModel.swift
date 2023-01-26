@@ -6,13 +6,13 @@ import Foundation
 
 final class EpisodeViewModel: EpisodeViewModelProtocol {
     
-    var requestType: NetworkRequestType
+    var selectedNetworkingAPI: NetworkRequestType
     
     /// Episode Publishers
-    @Published var episode: EpisodeModel = EpisodeModel()
+    @Published var viewState: EpisodeViewStates = .noData
     var episodeId: String
-    var episodePublished: Published<EpisodeModel> { _episode }
-    var episodePublisher: Published<EpisodeModel>.Publisher { $episode}
+    var viewStatePublished: Published<EpisodeViewStates> { _viewState }
+    var viewStatePublisher: Published<EpisodeViewStates>.Publisher { $viewState}
     
     /// Character Publishers
     @Published var characters: [CharacterModel] = []
@@ -21,12 +21,12 @@ final class EpisodeViewModel: EpisodeViewModelProtocol {
     
     init(requestType: NetworkRequestType,
          episodeId: String) {
-        self.requestType = requestType
+        self.selectedNetworkingAPI = requestType
         self.episodeId = episodeId
     }
     
     func fetchData(with episodeId: String) {
-        switch requestType {
+        switch selectedNetworkingAPI {
         case .classic:
             classicNetworkRequest()
         case .combine:
@@ -35,7 +35,9 @@ final class EpisodeViewModel: EpisodeViewModelProtocol {
             asynAwaitNetworkRequest()
         }
     }
-    
+}
+
+private extension EpisodeViewModel {
     private func fetchCharacters(with id: String) {
         // TODO: Character Fetch
     }

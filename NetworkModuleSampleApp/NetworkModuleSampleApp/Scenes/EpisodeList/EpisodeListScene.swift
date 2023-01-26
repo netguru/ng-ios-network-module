@@ -12,34 +12,55 @@ struct EpisodeListScene<T: EpisodeListViewModel>: View {
         ZStack {
             Color("episodeBG")
                 .ignoresSafeArea()
-            
-            VStack {
-                ScrollView {
-                    ForEach(viewModel.episodeList.episodes) { episode in
-                        EpisodeListRowView(episode: episode, requestType: viewModel.requestType)
-                    }
-                }
-                
-                .padding()
-                .scrollIndicators(.hidden)
+            if isDataLoading {
+                Text("Loading....")
             }
-        }
-        .navigationTitle("Final Space Episode Lists")
-                    .toolbar {
-                        Button {
-                           //TODO: Refresh Action
-                        } label: {
-                            Image(systemName: "goforward")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .foregroundColor(.white)
+            
+            if let error = isErrorLoaded {
+                Text("Error: \(error)")
+            }
+            
+            if let episodes = loadedEpisodeList {
+                VStack {
+                    ScrollView {
+                        ForEach(episodes) { episode in
+                            EpisodeListRowView(episode: episode, requestType: viewModel.requestType)
                         }
                     }
-                    .toolbarColorScheme(.dark, for: .navigationBar)
-                    .toolbarBackground(
-                        Color("episodeBG"),
-                        for: .navigationBar)
-                    .toolbarBackground(.visible, for: .navigationBar)
+                    .padding()
+                    .scrollIndicators(.hidden)
+                }
+            }
+            
+        }
+        .navigationTitle("Final Space Episode Lists")
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(
+            Color("episodeBG"),
+            for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+    }
+}
+
+private extension EpisodeListScene {
+    var isDataLoading: Bool {
+        viewModel.viewState == .loading
+    }
+    
+    var loadedEpisodeList: [EpisodeRowModel]? {
+        switch viewModel.viewState {
+        case .loaded(let episodeList):
+            return episodeList.episodes.map(EpisodeRowModel.init)
+        default:
+            return nil
+        }
+    }
+    
+    var isErrorLoaded: String? {
+        if case let .error(error) = viewModel.viewState {
+            return error.localizedDescription
+        }
+        return nil
     }
 }
 

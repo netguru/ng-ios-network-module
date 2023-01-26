@@ -4,12 +4,12 @@
 
 import Foundation
 
-struct EpisodeModel: Identifiable {
-    var id: String?
-    var name: String?
-    var airDate: String?
-    var director: String?
-    var writer: String?
-    var characters: [String]?
-    var imageURL: String?
+struct EpisodeModel: Identifiable, Equatable {
+    let id: String?
+    let name: String?
+    let airDate: String?
+    let director: String?
+    let writer: String?
+    let characters: [String]?
+    let imageURL: String?
 }

@@ -5,7 +5,7 @@
 import SwiftUI
 
 struct EpisodeCharacterRowView: View {
-    var character: CharacterModel
+    var character: EpisodeCharacterRowModel
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: character.imageURL ?? "")) { image in
@@ -33,7 +33,6 @@ struct EpisodeCharacterRowView: View {
 
 struct EpisodeCharacterRowView_Previews: PreviewProvider {
     static var previews: some View {
-        let mockCharacter = CharacterModel(name: "Gary Junior")
-        EpisodeCharacterRowView(character: mockCharacter)
+        EpisodeCharacterRowView(character: PreviewMocks.mockCharacterRowModel)
     }
 }
