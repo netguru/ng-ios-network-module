@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		225629A62983DB550054DC7E /* ConcurrentNgNetworkModule in Frameworks */ = {isa = PBXBuildFile; productRef = 225629A52983DB550054DC7E /* ConcurrentNgNetworkModule */; };
-		225629A82983DB550054DC7E /* NgNetworkModule in Frameworks */ = {isa = PBXBuildFile; productRef = 225629A72983DB550054DC7E /* NgNetworkModule */; };
 		225629AA2983DB550054DC7E /* ReactiveNgNetworkModule in Frameworks */ = {isa = PBXBuildFile; productRef = 225629A92983DB550054DC7E /* ReactiveNgNetworkModule */; };
 		AD06FC26297FE93900A05C0F /* EpisodeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD06FC25297FE93900A05C0F /* EpisodeHeaderView.swift */; };
 		AD073F02297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F01297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift */; };
@@ -20,6 +19,7 @@
 		AD073F22297EC637007B8C89 /* EpisodeListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F21297EC637007B8C89 /* EpisodeListRowView.swift */; };
 		AD073F28297FDB04007B8C89 /* HomeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F27297FDB04007B8C89 /* HomeRowView.swift */; };
 		AD073F2B297FE87D007B8C89 /* EpisodeSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F2A297FE87D007B8C89 /* EpisodeSceneView.swift */; };
+		AD4F74A62983ED7B00BF96CF /* NgNetworkModuleCore in Frameworks */ = {isa = PBXBuildFile; productRef = AD4F74A52983ED7B00BF96CF /* NgNetworkModuleCore */; };
 		ADC19E3529801E2300E26D25 /* HomeRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E3429801E2300E26D25 /* HomeRowType.swift */; };
 		ADC19E4129812F6600E26D25 /* EpisodeListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E4029812F6600E26D25 /* EpisodeListViewModelProtocol.swift */; };
 		ADC19E44298130D000E26D25 /* EpisodeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E43298130D000E26D25 /* EpisodeListViewModel.swift */; };
@@ -72,8 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				225629A82983DB550054DC7E /* NgNetworkModule in Frameworks */,
 				225629A62983DB550054DC7E /* ConcurrentNgNetworkModule in Frameworks */,
+				AD4F74A62983ED7B00BF96CF /* NgNetworkModuleCore in Frameworks */,
 				225629AA2983DB550054DC7E /* ReactiveNgNetworkModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,8 +333,8 @@
 			name = NetworkModuleSampleApp;
 			packageProductDependencies = (
 				225629A52983DB550054DC7E /* ConcurrentNgNetworkModule */,
-				225629A72983DB550054DC7E /* NgNetworkModule */,
 				225629A92983DB550054DC7E /* ReactiveNgNetworkModule */,
+				AD4F74A52983ED7B00BF96CF /* NgNetworkModuleCore */,
 			);
 			productName = NetworkModuleSampleApp;
 			productReference = AD073EFE297EC3DA007B8C89 /* NetworkModuleSampleApp.app */;
@@ -639,13 +639,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ConcurrentNgNetworkModule;
 		};
-		225629A72983DB550054DC7E /* NgNetworkModule */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = NgNetworkModule;
-		};
 		225629A92983DB550054DC7E /* ReactiveNgNetworkModule */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ReactiveNgNetworkModule;
+		};
+		AD4F74A52983ED7B00BF96CF /* NgNetworkModuleCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NgNetworkModuleCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
