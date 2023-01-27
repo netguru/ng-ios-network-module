@@ -1,7 +1,7 @@
 //
 //  EpisodeCharacterRowModel.swift
-//  NetworkModuleSampleApp
-
+//  Netguru iOS Network Module
+//
 
 import Foundation
 
@@ -13,8 +13,8 @@ struct EpisodeCharacterRowModel: Identifiable {
 
 extension EpisodeCharacterRowModel {
     init(model: CharacterModel) {
-        self.id = model.id
-        self.name = model.name
-        self.imageURL = model.imageURL
+        id = model.id
+        name = model.name
+        imageURL = model.imageURL
     }
 }

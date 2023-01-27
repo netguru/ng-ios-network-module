@@ -1,7 +1,7 @@
 //
 //  NetworkModuleSampleAppApp.swift
-//  NetworkModuleSampleApp
-
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 

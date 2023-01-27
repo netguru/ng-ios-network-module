@@ -1,8 +1,6 @@
 //
 //  ImagePlaceHolder.swift
-//  NetworkModuleSampleApp
-//
-//  Created by Kemal Ekren on 26/01/2023.
+//  Netguru iOS Network Module
 //
 
 import SwiftUI

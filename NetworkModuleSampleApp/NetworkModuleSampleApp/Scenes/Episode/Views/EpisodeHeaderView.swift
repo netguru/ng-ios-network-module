@@ -1,13 +1,13 @@
 //
 //  EpisodeHeaderView.swift
-//  NetworkModuleSampleApp
-
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
 struct EpisodeHeaderView: View {
     var episode: EpisodeModel
-    
+
     var body: some View {
         ZStack {
             Color("episodeBG")
@@ -20,7 +20,7 @@ struct EpisodeHeaderView: View {
                 } placeholder: {
                     ImagePlaceHolder()
                 }
-                
+
                 VStack(alignment: .leading) {
                     Text("\(episode.name ?? "")")
                         .foregroundColor(.white)
@@ -34,7 +34,7 @@ struct EpisodeHeaderView: View {
                     Divider()
                         .background(.white)
                         .frame(height: 1)
-                    
+
                     Text("Director: \(episode.director ?? "")")
                         .foregroundColor(.gray)
                         .font(.subheadline)
@@ -48,7 +48,7 @@ struct EpisodeHeaderView: View {
                         .font(.subheadline)
                         .padding(.bottom, 5)
                     Spacer()
-                }.padding(.leading,20)
+                }.padding(.leading, 20)
             }.ignoresSafeArea()
         }.ignoresSafeArea()
     }

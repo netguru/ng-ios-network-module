@@ -1,21 +1,21 @@
 //
 //  EpisodeListRowView.swift
-//  NetworkModuleSampleApp
-
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
 struct EpisodeListRowView: View {
     var episode: EpisodeRowModel
     var requestType: NetworkRequestType
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
             Color("light_gray")
                 .frame(height: 140)
                 .padding(.bottom, 0)
                 .cornerRadius(20)
-            
+
             HStack(alignment: .bottom) {
                 AsyncImage(url: URL(string: episode.imageURL ?? "")) { image in
                     image
@@ -28,7 +28,7 @@ struct EpisodeListRowView: View {
                 } placeholder: {
                     ImagePlaceHolder()
                 }
-                
+
                 VStack(alignment: .leading) {
                     Text("\(episode.name ?? "")")
                         .foregroundColor(.white)
@@ -44,12 +44,12 @@ struct EpisodeListRowView: View {
                     Text("Air Date: \(episode.airDate ?? "")")
                         .foregroundColor(.yellow)
                         .font(.subheadline)
-                    
+
                 }.padding(.bottom, 20)
                     .padding(.leading, 10)
-                
+
                 Spacer()
-                
+
                 NavigationLink(value: Route.episode(requestType: requestType, episodeId: episode.id ?? "")) {
                     Image(systemName: "chevron.right")
                         .resizable()

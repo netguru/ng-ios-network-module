@@ -1,6 +1,7 @@
 //
 //  EpisodeListViewModelProtocol.swift
-//  NetworkModuleSampleApp
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
@@ -16,11 +17,11 @@ enum EpisodeListViewState: Equatable {
     case loaded(EpisodeListModel)
     /// Could be created Custom error model
     case error(Error)
-    
+
     static func == (lhs: EpisodeListViewState, rhs: EpisodeListViewState) -> Bool {
         switch (lhs, rhs) {
         case (.noData, .noData),
-            (.loading, .loading):
+             (.loading, .loading):
             return true
         case let (.error(e1), .error(e2)):
             return e1.localizedDescription == e2.localizedDescription

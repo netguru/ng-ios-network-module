@@ -1,7 +1,7 @@
 //
 //  CharacterModel.swift
-//  NetworkModuleSampleApp
-
+//  Netguru iOS Network Module
+//
 
 import Foundation
 

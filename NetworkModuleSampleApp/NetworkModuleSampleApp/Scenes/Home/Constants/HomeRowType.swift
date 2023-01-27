@@ -1,12 +1,13 @@
 //
 //  HomeRowType.swift
-//  NetworkModuleSampleApp
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
 enum HomeRowType: String {
     case classic, combine, asyncawait
-    
+
     var rowTitle: String {
         switch self {
         case .classic: return "Classic Method Request"
@@ -14,7 +15,7 @@ enum HomeRowType: String {
         case .asyncawait: return "Async/Await Method Request"
         }
     }
-    
+
     var rowSubTitle: String {
         switch self {
         case .classic: return "Sample Explanation about Classic Network Request"
@@ -22,7 +23,7 @@ enum HomeRowType: String {
         case .asyncawait: return "Sample Explanation about AsyncAwait Network Request"
         }
     }
-    
+
     var rowImageName: String {
         switch self {
         case .classic: return "network"
@@ -30,7 +31,7 @@ enum HomeRowType: String {
         case .asyncawait: return "scribble"
         }
     }
-    
+
     var rowImageColor: Color {
         switch self {
         case .classic: return .blue
@@ -38,7 +39,7 @@ enum HomeRowType: String {
         case .asyncawait: return .indigo
         }
     }
-     
+
     var viewModelType: NetworkRequestType {
         switch self {
         case .classic:

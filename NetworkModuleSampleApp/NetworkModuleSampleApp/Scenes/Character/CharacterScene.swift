@@ -1,13 +1,13 @@
 //
 //  CharacterScene.swift
-//  NetworkModuleSampleApp
-
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
 struct CharacterScene: View {
     var body: some View {
-        //TODO: Will be created
+        // TODO: Will be created
         Text("Charater Scene")
     }
 }

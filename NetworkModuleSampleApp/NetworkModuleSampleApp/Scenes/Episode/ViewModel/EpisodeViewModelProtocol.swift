@@ -1,6 +1,7 @@
 //
 //  EpisodeViewModelProtocol.swift
-//  NetworkModuleSampleApp
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
@@ -10,11 +11,11 @@ enum EpisodeViewStates: Equatable {
     case loadedEpisode(EpisodeModel, [CharacterModel])
     /// Could be created Custom error model
     case error(Error)
-    
+
     static func == (lhs: EpisodeViewStates, rhs: EpisodeViewStates) -> Bool {
         switch (lhs, rhs) {
         case (.noData, .noData),
-            (.loading, .loading):
+             (.loading, .loading):
             return true
         case let (.error(e1), .error(e2)):
             return e1.localizedDescription == e2.localizedDescription
@@ -28,17 +29,16 @@ enum EpisodeViewStates: Equatable {
 
 protocol EpisodeViewModelProtocol: AnyObject, ObservableObject {
     var selectedNetworkingAPI: NetworkRequestType { get }
-    
+
     /// Episode Publisher Properties
     var viewState: EpisodeViewStates { get }
     var viewStatePublished: Published<EpisodeViewStates> { get }
     var viewStatePublisher: Published<EpisodeViewStates>.Publisher { get }
-    
+
     /// Character Publisher Properties
     var characters: [CharacterModel] { get }
     var charactersPublished: Published<[CharacterModel]> { get }
     var charactersPublisher: Published<[CharacterModel]>.Publisher { get }
-    
+
     func fetchData(with episodeId: String)
 }
-

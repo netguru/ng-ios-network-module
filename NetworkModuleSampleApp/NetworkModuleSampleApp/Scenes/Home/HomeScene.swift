@@ -1,13 +1,14 @@
 //
 //  HomeScene.swift
-//  NetworkModuleSampleApp
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
 struct HomeScene: View {
     /// Pre-configured HomeRow Types and Datas
     private let methodTypes: [HomeRowType] = [.classic, .combine, .asyncawait]
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -15,8 +16,8 @@ struct HomeScene: View {
                 Text("Welcome to NG Network Module")
                     .font(.title)
                     .bold()
-                
-                ForEach(methodTypes, id:\.self) { rowType in
+
+                ForEach(methodTypes, id: \.self) { rowType in
                     HomeRowView(rowType: rowType)
                         .padding([.leading, .trailing], 10)
                 }
@@ -29,10 +30,10 @@ struct HomeScene: View {
                 switch routes {
                 case .home:
                     HomeScene()
-                case .episodeList(let requestType):
+                case let .episodeList(requestType):
                     let viewModel = EpisodeListViewModel(requestType: requestType)
                     EpisodeListScene<EpisodeListViewModel>(viewModel: viewModel)
-                case .episode(let requestType, let episodeId):
+                case let .episode(requestType, episodeId):
                     let viewModel = EpisodeViewModel(requestType: requestType, episodeId: episodeId)
                     EpisodeSceneView<EpisodeViewModel>(viewModel: viewModel)
                 case .character:

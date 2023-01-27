@@ -1,7 +1,7 @@
 //
 //  EpisodeRowModel.swift
-//  NetworkModuleSampleApp
-
+//  Netguru iOS Network Module
+//
 
 import Foundation
 
@@ -16,11 +16,11 @@ struct EpisodeRowModel: Identifiable, Equatable {
 
 extension EpisodeRowModel {
     init(model: EpisodeModel) {
-        self.id = model.id
-        self.name = model.name
-        self.airDate = model.airDate
-        self.director = model.director
-        self.writer = model.writer
-        self.imageURL = model.imageURL
+        id = model.id
+        name = model.name
+        airDate = model.airDate
+        director = model.director
+        writer = model.writer
+        imageURL = model.imageURL
     }
 }

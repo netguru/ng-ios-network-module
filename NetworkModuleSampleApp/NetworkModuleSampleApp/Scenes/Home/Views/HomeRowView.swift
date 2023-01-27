@@ -1,6 +1,7 @@
 //
 //  HomeRowView.swift
-//  NetworkModuleSampleApp
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 struct HomeRowView: View {
@@ -14,7 +15,7 @@ struct HomeRowView: View {
                 .foregroundColor(rowType.rowImageColor)
                 .frame(width: 30, height: 30)
                 .padding(.leading, 10)
-            
+
             VStack(alignment: .leading) {
                 Text(rowType.rowTitle)
                     .fontWeight(.semibold)

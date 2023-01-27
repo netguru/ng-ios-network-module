@@ -1,6 +1,7 @@
 //
 //  EpisodeCharacterRowView.swift
-//  NetworkModuleSampleApp
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
@@ -15,7 +16,7 @@ struct EpisodeCharacterRowView: View {
                     .scaledToFill()
                     .clipped()
             } placeholder: {
-               ImagePlaceHolder()
+                ImagePlaceHolder()
             }
             Text("\(character.name ?? "")")
                 .font(.headline)

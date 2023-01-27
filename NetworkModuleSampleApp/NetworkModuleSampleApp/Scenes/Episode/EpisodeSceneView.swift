@@ -1,14 +1,15 @@
 //
 //  EpisodeSceneView.swift
-//  NetworkModuleSampleApp
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
 struct EpisodeSceneView<T: EpisodeViewModel>: View {
     @StateObject var viewModel: T
-    
+
     var body: some View {
-      EpisodeMainView(viewModel: viewModel)
+        EpisodeMainView(viewModel: viewModel)
     }
 }
 

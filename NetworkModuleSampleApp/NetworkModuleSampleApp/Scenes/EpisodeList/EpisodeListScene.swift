@@ -1,13 +1,13 @@
 //
 //  EpisodeListScene.swift
-//  NetworkModuleSampleApp
-
+//  Netguru iOS Network Module
+//
 
 import SwiftUI
 
 struct EpisodeListScene<T: EpisodeListViewModel>: View {
     @StateObject var viewModel: T
-    
+
     var body: some View {
         ZStack {
             Color("episodeBG")
@@ -15,11 +15,11 @@ struct EpisodeListScene<T: EpisodeListViewModel>: View {
             if isDataLoading {
                 Text("Loading....")
             }
-            
+
             if let error = isErrorLoaded {
                 Text("Error: \(error)")
             }
-            
+
             if let episodes = loadedEpisodeList {
                 VStack {
                     ScrollView {
@@ -31,7 +31,6 @@ struct EpisodeListScene<T: EpisodeListViewModel>: View {
                     .scrollIndicators(.hidden)
                 }
             }
-            
         }
         .navigationTitle("Final Space Episode Lists")
         .toolbarColorScheme(.dark, for: .navigationBar)
@@ -46,16 +45,16 @@ private extension EpisodeListScene {
     var isDataLoading: Bool {
         viewModel.viewState == .loading
     }
-    
+
     var loadedEpisodeList: [EpisodeRowModel]? {
         switch viewModel.viewState {
-        case .loaded(let episodeList):
+        case let .loaded(episodeList):
             return episodeList.episodes.map(EpisodeRowModel.init)
         default:
             return nil
         }
     }
-    
+
     var isErrorLoaded: String? {
         if case let .error(error) = viewModel.viewState {
             return error.localizedDescription
@@ -63,7 +62,6 @@ private extension EpisodeListScene {
         return nil
     }
 }
-
 
 struct EpisodeListScene_Previews: PreviewProvider {
     static var previews: some View {

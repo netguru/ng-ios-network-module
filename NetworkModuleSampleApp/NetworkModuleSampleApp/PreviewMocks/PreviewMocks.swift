@@ -1,7 +1,7 @@
 //
 //  PreviewMocks.swift
-//  NetworkModuleSampleApp
-
+//  Netguru iOS Network Module
+//
 
 import Foundation
 
@@ -13,7 +13,7 @@ enum PreviewMocks {
                                                writer: "Jane Doe",
                                                characters: [],
                                                imageURL: "")
-    
+
     static let mockEpisodeRowModel = EpisodeRowModel(model: mockEpisodeModel)
     static let mockCharacterRowModel = EpisodeCharacterRowModel(id: nil,
                                                                 name: "Gary Junior",
