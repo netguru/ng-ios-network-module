@@ -5,7 +5,7 @@
 
 import Foundation
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 
 struct EmptyNetworkRequest: NetworkRequest {
     let path = "/delete"

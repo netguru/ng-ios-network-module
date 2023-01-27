@@ -7,7 +7,7 @@ import Foundation
 import XCTest
 import Combine
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 @testable import ReactiveNgNetworkModule
 
 final class NetworkModuleReactiveAPITests: XCTestCase {

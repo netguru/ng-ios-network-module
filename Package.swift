@@ -9,8 +9,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "NgNetworkModule",
-            targets: ["NgNetworkModule"]
+            name: "NgNetworkModuleCore",
+            targets: ["NgNetworkModuleCore"]
         ),
         .library(
             name: "ReactiveNgNetworkModule",
@@ -26,20 +26,20 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "NgNetworkModule",
+            name: "NgNetworkModuleCore",
             dependencies: []
         ),
         .target(
             name: "ReactiveNgNetworkModule",
-            dependencies: ["NgNetworkModule"]
+            dependencies: ["NgNetworkModuleCore"]
         ),
         .target(
             name: "ConcurrentNgNetworkModule",
-            dependencies: ["NgNetworkModule"]
+            dependencies: ["NgNetworkModuleCore"]
         ),
         .testTarget(
-            name: "NgNetworkModuleTests",
-            dependencies: ["NgNetworkModule"]
+            name: "NgNetworkModuleCoreTests",
+            dependencies: ["NgNetworkModuleCore"]
         ),
         .testTarget(
             name: "ReactiveNgNetworkModuleTests",

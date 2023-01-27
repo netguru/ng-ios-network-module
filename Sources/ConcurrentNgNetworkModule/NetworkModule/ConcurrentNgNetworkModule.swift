@@ -5,7 +5,7 @@
 
 import Foundation
 import Combine
-import NgNetworkModule
+import NgNetworkModuleCore
 
 public extension NetworkModule {
 
