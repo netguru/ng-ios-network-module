@@ -59,12 +59,12 @@ private extension EpisodeMainView {
         viewModel.viewState == .loading
     }
 
-    var loadedEpisode: (episode: EpisodeModel?,
+    var loadedEpisode: (episode: EpisodeHeaderViewModel?,
                         character: [EpisodeCharacterRowModel]?) {
         switch viewModel.viewState {
         case let .loadedEpisode(episode, characters):
             let characterRow = characters.map(EpisodeCharacterRowModel.init)
-            return (episode, characterRow)
+            return (EpisodeHeaderViewModel(model: episode), characterRow)
         default:
             return (nil, nil)
         }

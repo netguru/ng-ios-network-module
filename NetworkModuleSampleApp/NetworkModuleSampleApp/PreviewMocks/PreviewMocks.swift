@@ -18,4 +18,5 @@ enum PreviewMocks {
     static let mockCharacterRowModel = EpisodeCharacterRowModel(id: nil,
                                                                 name: "Gary Junior",
                                                                 imageURL: nil)
+    static let mockEpisodeHeaderModel = EpisodeHeaderViewModel(model: mockEpisodeModel)
 }

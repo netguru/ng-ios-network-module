@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct EpisodeHeaderView: View {
-    var episode: EpisodeModel
+    let episode: EpisodeHeaderViewModel
 
     var body: some View {
         ZStack {
@@ -56,6 +56,6 @@ struct EpisodeHeaderView: View {
 
 struct EpisodeHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeHeaderView(episode: PreviewMocks.mockEpisodeModel)
+        EpisodeHeaderView(episode: PreviewMocks.mockEpisodeHeaderModel)
     }
 }

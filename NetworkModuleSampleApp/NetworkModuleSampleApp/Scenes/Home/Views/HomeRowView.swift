@@ -5,7 +5,7 @@
 
 import SwiftUI
 struct HomeRowView: View {
-    var rowType: HomeRowType = .classic
+    let rowType: HomeRowType
 
     var body: some View {
         HStack {

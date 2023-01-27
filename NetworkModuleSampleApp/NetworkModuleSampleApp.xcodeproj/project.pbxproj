@@ -20,6 +20,7 @@
 		AD073F28297FDB04007B8C89 /* HomeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F27297FDB04007B8C89 /* HomeRowView.swift */; };
 		AD073F2B297FE87D007B8C89 /* EpisodeSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F2A297FE87D007B8C89 /* EpisodeSceneView.swift */; };
 		AD4F74A62983ED7B00BF96CF /* NgNetworkModuleCore in Frameworks */ = {isa = PBXBuildFile; productRef = AD4F74A52983ED7B00BF96CF /* NgNetworkModuleCore */; };
+		AD4F74A92984168C00BF96CF /* EpisodeHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4F74A82984168C00BF96CF /* EpisodeHeaderViewModel.swift */; };
 		ADC19E3529801E2300E26D25 /* HomeRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E3429801E2300E26D25 /* HomeRowType.swift */; };
 		ADC19E4129812F6600E26D25 /* EpisodeListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E4029812F6600E26D25 /* EpisodeListViewModelProtocol.swift */; };
 		ADC19E44298130D000E26D25 /* EpisodeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E43298130D000E26D25 /* EpisodeListViewModel.swift */; };
@@ -50,6 +51,7 @@
 		AD073F21297EC637007B8C89 /* EpisodeListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListRowView.swift; sourceTree = "<group>"; };
 		AD073F27297FDB04007B8C89 /* HomeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRowView.swift; sourceTree = "<group>"; };
 		AD073F2A297FE87D007B8C89 /* EpisodeSceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeSceneView.swift; sourceTree = "<group>"; };
+		AD4F74A82984168C00BF96CF /* EpisodeHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeHeaderViewModel.swift; sourceTree = "<group>"; };
 		ADC19E3429801E2300E26D25 /* HomeRowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRowType.swift; sourceTree = "<group>"; };
 		ADC19E4029812F6600E26D25 /* EpisodeListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewModelProtocol.swift; sourceTree = "<group>"; };
 		ADC19E43298130D000E26D25 /* EpisodeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewModel.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			children = (
 				ADC19E4D2981584F00E26D25 /* EpisodeModel.swift */,
 				ADE5A54C29827827003B3AE6 /* EpisodeCharacterRowModel.swift */,
+				AD4F74A82984168C00BF96CF /* EpisodeHeaderViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				ADE5A54B29827378003B3AE6 /* EpisodeRowModel.swift in Sources */,
 				ADE5A54D29827827003B3AE6 /* EpisodeCharacterRowModel.swift in Sources */,
 				ADC19E51298159D100E26D25 /* CharacterModel.swift in Sources */,
+				AD4F74A92984168C00BF96CF /* EpisodeHeaderViewModel.swift in Sources */,
 				ADC19E5429815AEA00E26D25 /* EpisodeListModel.swift in Sources */,
 				AD073F1C297EC4FA007B8C89 /* EpisodeListScene.swift in Sources */,
 				ADC19E5B29816AC100E26D25 /* EpisodeCharacterRowView.swift in Sources */,
