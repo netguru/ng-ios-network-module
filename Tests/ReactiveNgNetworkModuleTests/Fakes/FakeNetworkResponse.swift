@@ -6,7 +6,7 @@
 import Foundation
 
 @testable import ReactiveNgNetworkModule
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 
 struct FakeNetworkResponse: Codable, Equatable {
     let foo: String

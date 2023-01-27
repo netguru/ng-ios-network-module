@@ -42,22 +42,23 @@ dependencies: [
 
 ### Available API variants:
 The module is available in 3 variants:
-- Default API - a classic API to execute a network request and return an answer in a callback.
+- Network Module Core - a base module, leveraging callback-based API to execute a network request and return an answer in a callback. 
 ```
-import NgNetworkModule
+import NgNetworkModuleCore
 ```
-- Reactive API (`Combine`) - a reactive API emitting an answer as an event, or an error.
+- Reactive API (`Combine`) - a reactive API emitting an answer as an event, or an error. Requires importing `NgNetworkModuleCore` to work!
 ```
 import ReactiveNgNetworkModule
 ```
-- Concurrent API (`async/await`) - an API utilising modern Swift concurrency.
+- Concurrent API (`async/await`) - an API utilising modern Swift concurrency. Requires importing `NgNetworkModuleCore` to work!
 ```
 import ConcurrentNgNetworkModule
 ```
 
 ### Creating network module:
 ```
-import NgNetworkModule / ReactiveNgNetworkModule / ConcurrentNgNetworkModule
+import NgNetworkModuleCore
+(optionally) import ReactiveNgNetworkModule / ConcurrentNgNetworkModule
 ...
 let baseURL = URL(string: "https://your.base.url")!
 let requestBuilder = DefaultRequestBuilder(baseURL: baseURL)

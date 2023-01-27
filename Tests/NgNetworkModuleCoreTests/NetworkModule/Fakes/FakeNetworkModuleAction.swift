@@ -5,7 +5,7 @@
 
 import Foundation
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 
 final class FakeNetworkModuleAction: NetworkModuleAction {
     private(set) var lastRequestPreExecutionActionPerformedOn: URLRequest?

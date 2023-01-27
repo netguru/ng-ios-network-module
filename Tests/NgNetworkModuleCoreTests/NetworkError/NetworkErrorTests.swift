@@ -6,7 +6,7 @@
 import Foundation
 import XCTest
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 
 final class NetworkErrorTest: XCTestCase {
 

@@ -5,7 +5,7 @@
 
 import Foundation
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 
 final class FakeNetworkSession: NetworkSession {
     var simulatedURLSessionDataTask: URLSessionDataTask?

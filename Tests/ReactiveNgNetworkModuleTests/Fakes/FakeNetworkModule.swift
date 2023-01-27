@@ -5,7 +5,7 @@
 
 import Foundation
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 @testable import ReactiveNgNetworkModule
 
 final class FakeNetworkModule: NetworkModule {

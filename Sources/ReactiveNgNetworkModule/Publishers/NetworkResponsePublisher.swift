@@ -5,7 +5,7 @@
 
 import Foundation
 import Combine
-import NgNetworkModule
+import NgNetworkModuleCore
 
 @available(macOS 10.15, *)
 public extension Publishers {
