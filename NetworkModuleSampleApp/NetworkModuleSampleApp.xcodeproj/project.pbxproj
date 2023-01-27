@@ -11,7 +11,6 @@
 		AD073F02297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F01297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift */; };
 		AD073F06297EC3DC007B8C89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD073F05297EC3DC007B8C89 /* Assets.xcassets */; };
 		AD073F09297EC3DC007B8C89 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD073F08297EC3DC007B8C89 /* Preview Assets.xcassets */; };
-		AD073F13297EC412007B8C89 /* NgNetworkModule in Frameworks */ = {isa = PBXBuildFile; productRef = AD073F12297EC412007B8C89 /* NgNetworkModule */; };
 		AD073F16297EC45A007B8C89 /* HomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F15297EC45A007B8C89 /* HomeScene.swift */; };
 		AD073F1C297EC4FA007B8C89 /* EpisodeListScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F1B297EC4FA007B8C89 /* EpisodeListScene.swift */; };
 		AD073F1F297EC536007B8C89 /* CharacterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F1E297EC536007B8C89 /* CharacterScene.swift */; };
@@ -36,12 +35,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		225629A32983D3890054DC7E /* NgNetworkModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NgNetworkModule; path = ..; sourceTree = "<group>"; };
 		AD06FC25297FE93900A05C0F /* EpisodeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeHeaderView.swift; sourceTree = "<group>"; };
 		AD073EFE297EC3DA007B8C89 /* NetworkModuleSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkModuleSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD073F01297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModuleSampleAppApp.swift; sourceTree = "<group>"; };
 		AD073F05297EC3DC007B8C89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD073F08297EC3DC007B8C89 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AD073F10297EC3F9007B8C89 /* ng-ios-network-module */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "ng-ios-network-module"; path = ..; sourceTree = "<group>"; };
 		AD073F15297EC45A007B8C89 /* HomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScene.swift; sourceTree = "<group>"; };
 		AD073F1B297EC4FA007B8C89 /* EpisodeListScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListScene.swift; sourceTree = "<group>"; };
 		AD073F1E297EC536007B8C89 /* CharacterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterScene.swift; sourceTree = "<group>"; };
@@ -70,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD073F13297EC412007B8C89 /* NgNetworkModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +118,7 @@
 		AD073F0F297EC3F9007B8C89 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				AD073F10297EC3F9007B8C89 /* ng-ios-network-module */,
+				225629A32983D3890054DC7E /* NgNetworkModule */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -320,6 +318,7 @@
 				AD073EFA297EC3DA007B8C89 /* Sources */,
 				AD073EFB297EC3DA007B8C89 /* Frameworks */,
 				AD073EFC297EC3DA007B8C89 /* Resources */,
+				225629A42983D5780054DC7E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -327,7 +326,6 @@
 			);
 			name = NetworkModuleSampleApp;
 			packageProductDependencies = (
-				AD073F12297EC412007B8C89 /* NgNetworkModule */,
 			);
 			productName = NetworkModuleSampleApp;
 			productReference = AD073EFE297EC3DA007B8C89 /* NetworkModuleSampleApp.app */;
@@ -377,6 +375,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		225629A42983D5780054DC7E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd BuildTools\nSDKROOT=(xcrun --sdk macosx --show-sdk-path)\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\nswift run -c release swiftformat \"$SRCROOT\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD073EFA297EC3DA007B8C89 /* Sources */ = {
@@ -606,13 +624,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		AD073F12297EC412007B8C89 /* NgNetworkModule */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = NgNetworkModule;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AD073EF6297EC3DA007B8C89 /* Project object */;
 }
