@@ -6,7 +6,7 @@
 import Foundation
 import XCTest
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 
 final class NetworkResponseTest: XCTestCase {
     private let fakeResponseData = FakeResponseData(fooString: "bar", fooNumber: 1)

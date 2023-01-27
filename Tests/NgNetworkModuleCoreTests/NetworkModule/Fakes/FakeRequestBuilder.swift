@@ -5,7 +5,7 @@
 
 import Foundation
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 
 final class FakeRequestBuilder: RequestBuilder {
     var simulatedUrlRequest: URLRequest?

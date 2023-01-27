@@ -1,18 +1,18 @@
 //
-//  MainQueueOperationsExecutorTests.swift
+//  BackgroundQueueOperationsExecutorTests.swift
 //  Netguru iOS Network Module
 //
 
 import Foundation
 import XCTest
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 
-final class MainQueueOperationsExecutorTest: XCTestCase {
-    var sut: MainQueueOperationsExecutor!
+final class BackgroundQueueOperationsExecutorTest: XCTestCase {
+    var sut: BackgroundQueueOperationsExecutor!
 
     override func setUp() {
-        sut = MainQueueOperationsExecutor()
+        sut = BackgroundQueueOperationsExecutor()
     }
 
     func test_shouldExecuteProvidedCallbackAsynchronously() {
@@ -28,7 +28,7 @@ final class MainQueueOperationsExecutorTest: XCTestCase {
 
         //  then:
         wait(for: [fixtureExpectation], timeout: 1.0)
-        XCTAssertEqual(sut.type, AsynchronousExecutorType.main, "Should be of proper type")
+        XCTAssertEqual(sut.type, AsynchronousExecutorType.backgroundConcurrent, "Should be of proper type")
         XCTAssertEqual(didExecuteCallback, true, "Should execute callback")
     }
 }

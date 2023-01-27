@@ -5,7 +5,7 @@
 
 import Foundation
 
-@testable import NgNetworkModule
+@testable import NgNetworkModuleCore
 @testable import ConcurrentNgNetworkModule
 
 final class FakeNetworkModule: NetworkModule {
