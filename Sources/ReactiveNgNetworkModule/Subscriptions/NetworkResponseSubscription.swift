@@ -13,10 +13,11 @@ public extension Publishers {
     final class NetworkResponseSubscription<S: Subscriber>: Subscription
         where S.Input == NetworkResponse, S.Failure == NetworkError {
 
-        private let networkModule: NetworkModule
+        private var networkModule: NetworkModule?
         private var subscriber: S?
         private var request: NetworkRequest?
         private var urlRequest: URLRequest?
+        private var currentTask: URLSessionTask?
 
         /// A default NetworkResponseSubscription initializer.
         /// To be used when executing a generic URLRequest.
@@ -57,7 +58,9 @@ public extension Publishers {
 
         /// - SeeAlso: Subscription.cancel()
         public func cancel() {
+            currentTask?.cancel()
             subscriber = nil
+            cleanUp()
         }
     }
 }
@@ -65,26 +68,36 @@ public extension Publishers {
 private extension Publishers.NetworkResponseSubscription {
 
     func perform(request: NetworkRequest) {
-        networkModule.perform(request: request) { [subscriber] result in
+        currentTask = networkModule?.perform(request: request) { [weak self] result in
             switch result {
             case let .success(response):
-                _ = subscriber?.receive(response)
-                subscriber?.receive(completion: Subscribers.Completion.finished)
+                // Ignoring the received `demand` as the can be only one active connection per subscription.
+                _ = self?.subscriber?.receive(response)
+                self?.subscriber?.receive(completion: Subscribers.Completion.finished)
             case let .failure(error):
-                subscriber?.receive(completion: Subscribers.Completion.failure(error))
+                self?.subscriber?.receive(completion: Subscribers.Completion.failure(error))
             }
+            self?.cleanUp()
         }
     }
 
     func perform(urlRequest: URLRequest) {
-        networkModule.perform(urlRequest: urlRequest) { [subscriber] result in
+        currentTask = networkModule?.perform(urlRequest: urlRequest) { [weak self] result in
             switch result {
             case let .success(response):
-                _ = subscriber?.receive(response)
-                subscriber?.receive(completion: Subscribers.Completion.finished)
+                // Ignoring the received `demand` as the can be only one active connection per subscription.
+                _ = self?.subscriber?.receive(response)
+                self?.subscriber?.receive(completion: Subscribers.Completion.finished)
             case let .failure(error):
-                subscriber?.receive(completion: Subscribers.Completion.failure(error))
+                self?.subscriber?.receive(completion: Subscribers.Completion.failure(error))
             }
+            self?.cleanUp()
         }
+    }
+    
+    func cleanUp() {
+        networkModule = nil
+        urlRequest = nil
+        request = nil
     }
 }
