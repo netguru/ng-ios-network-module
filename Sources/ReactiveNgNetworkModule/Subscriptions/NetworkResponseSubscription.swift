@@ -49,10 +49,12 @@ public extension Publishers {
 
         /// - SeeAlso: Subscription.request(demand:)
         public func request(_ demand: Subscribers.Demand) {
-            if let request = request {
-                perform(request: request)
-            } else if let urlRequest = urlRequest {
-                perform(urlRequest: urlRequest)
+            if let subscriber = subscriber, demand > 0 {
+                if let request = request {
+                    perform(request: request, subscriber: subscriber)
+                } else if let urlRequest = urlRequest {
+                    perform(urlRequest: urlRequest, subscriber: subscriber)
+                }
             }
         }
 
@@ -67,34 +69,34 @@ public extension Publishers {
 
 private extension Publishers.NetworkResponseSubscription {
 
-    func perform(request: NetworkRequest) {
+    func perform(request: NetworkRequest, subscriber: S) {
         currentTask = networkModule?.perform(request: request) { [weak self] result in
             switch result {
             case let .success(response):
                 // Ignoring the received `demand` as the can be only one active connection per subscription.
-                _ = self?.subscriber?.receive(response)
-                self?.subscriber?.receive(completion: Subscribers.Completion.finished)
+                _ = subscriber.receive(response)
+                subscriber.receive(completion: Subscribers.Completion.finished)
             case let .failure(error):
-                self?.subscriber?.receive(completion: Subscribers.Completion.failure(error))
+                subscriber.receive(completion: Subscribers.Completion.failure(error))
             }
             self?.cleanUp()
         }
     }
 
-    func perform(urlRequest: URLRequest) {
+    func perform(urlRequest: URLRequest, subscriber: S) {
         currentTask = networkModule?.perform(urlRequest: urlRequest) { [weak self] result in
             switch result {
             case let .success(response):
                 // Ignoring the received `demand` as the can be only one active connection per subscription.
-                _ = self?.subscriber?.receive(response)
-                self?.subscriber?.receive(completion: Subscribers.Completion.finished)
+                _ = subscriber.receive(response)
+                subscriber.receive(completion: Subscribers.Completion.finished)
             case let .failure(error):
-                self?.subscriber?.receive(completion: Subscribers.Completion.failure(error))
+                subscriber.receive(completion: Subscribers.Completion.failure(error))
             }
             self?.cleanUp()
         }
     }
-    
+
     func cleanUp() {
         networkModule = nil
         urlRequest = nil
