@@ -122,7 +122,8 @@ networkModule.performAndDecode(request: networkRequest, responseType: ExpectedRe
     }
 }
 ``` 
-- Reactive API (`Combine`) - a reactive API emitting an answer as an event, or an error:
+- Reactive API (`Combine`) - a reactive API emitting an answer as an event, or an error:\
+No need to add `.receive(on: DispatchQueue.main)` as it is guaranteed by the `NgNetworkModuleCore` design.
 ```
 perform(request: networkRequest)
 perform(urlRequest: urlRequest)
