@@ -15,7 +15,7 @@ struct EpisodeSceneView<T: EpisodeViewModel>: View {
 
 struct EpisodeSceneView_Previews: PreviewProvider {
     static var previews: some View {
-        let mockViewModel = EpisodeViewModel(requestType: .classic, episodeId: "1")
+        let mockViewModel = EpisodeViewModel(requestType: .classic, episodeId: 1)
         EpisodeSceneView<EpisodeViewModel>(viewModel: mockViewModel)
     }
 }

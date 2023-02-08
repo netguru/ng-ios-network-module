@@ -6,12 +6,12 @@
 import Foundation
 
 struct EpisodeHeaderViewModel: Identifiable {
-    let id: String?
-    let name: String?
+    let id: Int
+    let name: String
     let airDate: String?
-    let director: String?
-    let writer: String?
-    let imageURL: String?
+    let director: String
+    let writer: String
+    let imageURL: String
 }
 
 extension EpisodeHeaderViewModel {

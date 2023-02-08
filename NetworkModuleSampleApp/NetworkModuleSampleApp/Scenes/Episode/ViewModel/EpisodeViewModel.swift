@@ -7,8 +7,8 @@ import Foundation
 
 final class EpisodeViewModel: EpisodeViewModelProtocol {
 
-    let selectedNetworkingAPI: NetworkRequestType
-    let episodeId: String
+    let selectedNetworkingAPI: NetworkModuleApiType
+    let episodeId: Int
 
     /// Episode Publishers
     @Published var viewState: EpisodeViewStates = .noData
@@ -21,8 +21,10 @@ final class EpisodeViewModel: EpisodeViewModelProtocol {
     var charactersPublished: Published<[CharacterModel]> { _characters }
     var charactersPublisher: Published<[CharacterModel]>.Publisher { $characters }
 
-    init(requestType: NetworkRequestType,
-         episodeId: String) {
+    init(
+        requestType: NetworkModuleApiType,
+        episodeId: Int
+    ) {
         selectedNetworkingAPI = requestType
         self.episodeId = episodeId
     }

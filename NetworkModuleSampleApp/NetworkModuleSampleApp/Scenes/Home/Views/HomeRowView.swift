@@ -8,25 +8,27 @@ struct HomeRowView: View {
     let rowType: HomeRowType
 
     var body: some View {
-        HStack {
-            Image(systemName: rowType.rowImageName)
-                .resizable()
-                .scaledToFill()
-                .foregroundColor(rowType.rowImageColor)
-                .frame(width: 30, height: 30)
-                .padding(.leading, 10)
+        NavigationLink(value: Route.episodeList(rowType.viewModelType)) {
+            HStack {
+                Image(systemName: rowType.rowImageName)
+                    .resizable()
+                    .scaledToFill()
+                    .foregroundColor(rowType.rowImageColor)
+                    .frame(width: 30, height: 30)
+                    .padding(.leading, 10)
 
-            VStack(alignment: .leading) {
-                Text(rowType.rowTitle)
-                    .fontWeight(.semibold)
-                    .font(.headline)
-                Text(rowType.rowSubTitle)
-                    .font(.subheadline)
-                    .lineLimit(2)
-            }
-            .padding(.leading, 15)
-            Spacer()
-            NavigationLink(value: Route.episodeList(rowType.viewModelType)) {
+                VStack(alignment: .leading) {
+                    Text(rowType.rowTitle)
+                        .fontWeight(.semibold)
+                        .font(.headline)
+                    Text(rowType.rowSubTitle)
+                        .font(.subheadline)
+                        .lineLimit(2)
+                }
+                .padding(.leading, 15)
+
+                Spacer()
+
                 Image(systemName: "chevron.right")
                     .resizable()
                     .scaledToFit()
@@ -37,8 +39,9 @@ struct HomeRowView: View {
                     .background(rowType.rowImageColor)
                     .cornerRadius(5)
                     .padding([.leading, .trailing], 10)
-            }
-        }.frame(height: 100)
+            }.frame(height: 100)
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

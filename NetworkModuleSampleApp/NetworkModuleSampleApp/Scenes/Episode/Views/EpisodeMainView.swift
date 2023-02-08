@@ -9,7 +9,7 @@ struct EpisodeMainView<T: EpisodeViewModel>: View {
     @StateObject var viewModel: T
     var body: some View {
         ZStack {
-            Color("episodeBG")
+            Color("episode_background")
 
             if isDataLoading {
                 Text("Loading....")
@@ -47,8 +47,9 @@ struct EpisodeMainView<T: EpisodeViewModel>: View {
         .navigationTitle("\(loadedEpisode.episode?.name ?? "")")
         .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbarBackground(
-            Color("episodeBG"),
-            for: .navigationBar)
+            Color("episode_background"),
+            for: .navigationBar
+        )
         .toolbarBackground(.visible, for: .navigationBar)
         .edgesIgnoringSafeArea(.bottom)
     }
@@ -59,8 +60,10 @@ private extension EpisodeMainView {
         viewModel.viewState == .loading
     }
 
-    var loadedEpisode: (episode: EpisodeHeaderViewModel?,
-                        character: [EpisodeCharacterRowModel]?) {
+    var loadedEpisode: (
+        episode: EpisodeHeaderViewModel?,
+        character: [EpisodeCharacterRowModel]?
+    ) {
         switch viewModel.viewState {
         case let .loadedEpisode(episode, characters):
             let characterRow = characters.map(EpisodeCharacterRowModel.init)
@@ -80,7 +83,7 @@ private extension EpisodeMainView {
 
 struct EpisodeMainView_Previews: PreviewProvider {
     static var previews: some View {
-        let mockViewModel = EpisodeViewModel(requestType: .classic, episodeId: "1")
+        let mockViewModel = EpisodeViewModel(requestType: .classic, episodeId: 1)
         EpisodeMainView(viewModel: mockViewModel)
     }
 }
