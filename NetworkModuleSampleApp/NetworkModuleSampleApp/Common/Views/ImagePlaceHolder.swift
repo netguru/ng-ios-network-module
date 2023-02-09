@@ -7,13 +7,13 @@ import SwiftUI
 
 struct ImagePlaceHolder: View {
     var body: some View {
-        Image("mock_episode_image")
-            .resizable()
-            .scaledToFill()
-            .frame(width: 140, height: 180)
-            .clipped()
-            .padding(.bottom, 20)
-            .padding(.leading, 10)
+        ZStack {
+            Color("episode_background")
+                .episodeMiniature()
+
+            CircularProgressView(thickness: 4)
+                .frame(width: 40, height: 40)
+        }
     }
 }
 

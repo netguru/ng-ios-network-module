@@ -40,7 +40,7 @@ enum HomeRowType: String {
         }
     }
 
-    var viewModelType: NetworkRequestType {
+    var viewModelType: NetworkModuleApiType {
         switch self {
         case .classic:
             return .classic

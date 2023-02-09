@@ -28,7 +28,7 @@ enum EpisodeViewStates: Equatable {
 }
 
 protocol EpisodeViewModelProtocol: AnyObject, ObservableObject {
-    var selectedNetworkingAPI: NetworkRequestType { get }
+    var selectedNetworkingAPI: NetworkModuleApiType { get }
 
     /// Episode Publisher Properties
     var viewState: EpisodeViewStates { get }

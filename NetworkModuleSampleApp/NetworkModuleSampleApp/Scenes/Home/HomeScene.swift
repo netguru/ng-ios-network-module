@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import NgNetworkModuleCore
 
 struct HomeScene: View {
     /// Pre-configured HomeRow Types and Datas
@@ -27,11 +28,15 @@ struct HomeScene: View {
                     .foregroundColor(.gray)
             }
             .navigationDestination(for: Route.self) { routes in
+                let baseUrl = URL(string: "https://finalspaceapi.com/api")!
+                let requestBuilder = DefaultRequestBuilder(baseURL: baseUrl)
+                let networkModule = DefaultNetworkModule(requestBuilder: requestBuilder)
+
                 switch routes {
                 case .home:
                     HomeScene()
                 case let .episodeList(requestType):
-                    let viewModel = EpisodeListViewModel(requestType: requestType)
+                    let viewModel = EpisodeListViewModel(requestType: requestType, networkModule: networkModule)
                     EpisodeListScene<EpisodeListViewModel>(viewModel: viewModel)
                 case let .episode(requestType, episodeId):
                     let viewModel = EpisodeViewModel(requestType: requestType, episodeId: episodeId)

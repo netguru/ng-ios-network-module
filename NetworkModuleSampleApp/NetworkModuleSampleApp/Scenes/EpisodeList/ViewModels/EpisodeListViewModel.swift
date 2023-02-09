@@ -4,18 +4,22 @@
 //
 
 import Foundation
+import NgNetworkModuleCore
 
 final class EpisodeListViewModel: EpisodeListViewModelProtocol {
-    @Published var viewState: EpisodeListViewState = .noData
-
-    let requestType: NetworkRequestType
-
+    @Published private(set) var viewState: EpisodeListViewState = .loading
     var viewStatePublished: Published<EpisodeListViewState> { _viewState }
-
     var viewStatePublisher: Published<EpisodeListViewState>.Publisher { $viewState }
 
-    init(requestType: NetworkRequestType) {
+    let requestType: NetworkModuleApiType
+    let networkModule: NetworkModule
+
+    init(
+        requestType: NetworkModuleApiType,
+        networkModule: NetworkModule
+    ) {
         self.requestType = requestType
+        self.networkModule = networkModule
     }
 
     func fetchData() {
@@ -32,7 +36,15 @@ final class EpisodeListViewModel: EpisodeListViewModelProtocol {
 
 private extension EpisodeListViewModel {
     func classicNetworkRequest() {
-        // TODO: Make Classic Network request
+        let request = GetEpisodesListRequest()
+        networkModule.performAndDecode(request: request, responseType: [EpisodeModel].self) { [weak self] result in
+            switch result {
+            case let .success(episodesList):
+                self?.viewState = .loaded(episodesList)
+            case let .failure(error):
+                self?.viewState = .error(error)
+            }
+        }
     }
 
     func combineNetworkRequest() {

@@ -6,51 +6,58 @@
 import SwiftUI
 
 struct EpisodeListRowView: View {
-    var episode: EpisodeRowModel
-    var requestType: NetworkRequestType
+    let episode: EpisodeRowModel
+    let requestType: NetworkModuleApiType
 
     var body: some View {
         ZStack(alignment: .bottom) {
+
             Color("light_gray")
-                .frame(height: 140)
+                .frame(height: 135)
                 .padding(.bottom, 0)
                 .cornerRadius(20)
 
-            HStack(alignment: .bottom) {
-                AsyncImage(url: URL(string: episode.imageURL ?? "")) { image in
-                    image
-                        .resizable()
-                        .frame(width: 140, height: 180)
-                        .scaledToFill()
-                        .clipped()
-                        .padding(.bottom, 20)
-                        .padding(.leading, 10)
-                } placeholder: {
-                    ImagePlaceHolder()
-                }
+            NavigationLink(value: Route.episode(requestType: requestType, episodeId: episode.id)) {
+                HStack(alignment: .bottom) {
+                    AsyncImage(
+                        url: URL(string: episode.secureImageURL),
+                        content: { image in
+                            image
+                                .resizable()
+                                .episodeMiniature()
+                                .padding(15)
+                        },
+                        placeholder: {
+                            ImagePlaceHolder()
+                                .padding(15)
+                        }
+                    )
 
-                VStack(alignment: .leading) {
-                    Text("\(episode.name ?? "")")
-                        .foregroundColor(.white)
-                        .font(.title2)
-                        .bold()
-                        .padding(.bottom, 20)
-                    Text("Director: \(episode.director ?? "")")
-                        .foregroundColor(.gray)
-                        .font(.subheadline)
-                    Text("Writer: \(episode.writer ?? "")")
-                        .foregroundColor(.gray)
-                        .font(.subheadline)
-                    Text("Air Date: \(episode.airDate ?? "")")
-                        .foregroundColor(.yellow)
-                        .font(.subheadline)
-
-                }.padding(.bottom, 20)
+                    VStack(alignment: .leading) {
+                        Text(episode.name)
+                            .foregroundColor(Color("white"))
+                            .font(.title2)
+                            .bold()
+                            .singleLineScaledToFit()
+                            .padding(.bottom, 20)
+                        Text("Director: \(episode.director)")
+                            .foregroundColor(.gray)
+                            .font(.subheadline)
+                            .singleLineScaledToFit()
+                        Text("Writer: \(episode.writer)")
+                            .foregroundColor(.gray)
+                            .font(.subheadline)
+                            .singleLineScaledToFit()
+                        Text("Air Date: \(episode.airDate ?? "---")")
+                            .foregroundColor(.yellow)
+                            .font(.subheadline)
+                            .singleLineScaledToFit()
+                    }
+                    .padding(.bottom, 20)
                     .padding(.leading, 10)
 
-                Spacer()
+                    Spacer()
 
-                NavigationLink(value: Route.episode(requestType: requestType, episodeId: episode.id ?? "")) {
                     Image(systemName: "chevron.right")
                         .resizable()
                         .scaledToFit()

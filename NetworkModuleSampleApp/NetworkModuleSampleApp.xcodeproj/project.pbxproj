@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		225629A62983DB550054DC7E /* ConcurrentNgNetworkModule in Frameworks */ = {isa = PBXBuildFile; productRef = 225629A52983DB550054DC7E /* ConcurrentNgNetworkModule */; };
 		225629AA2983DB550054DC7E /* ReactiveNgNetworkModule in Frameworks */ = {isa = PBXBuildFile; productRef = 225629A92983DB550054DC7E /* ReactiveNgNetworkModule */; };
+		2260DF2029926F7500ED9386 /* GetEpisodesListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260DF1F29926F7500ED9386 /* GetEpisodesListRequest.swift */; };
+		2260DF2329938C2900ED9386 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260DF2229938C2900ED9386 /* TextStyles.swift */; };
+		2260DF2529938E6F00ED9386 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2260DF2429938E6F00ED9386 /* CircularProgressView.swift */; };
+		2290A8D92994CDD900067FFC /* ViewStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290A8D82994CDD900067FFC /* ViewStyles.swift */; };
 		AD06FC26297FE93900A05C0F /* EpisodeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD06FC25297FE93900A05C0F /* EpisodeHeaderView.swift */; };
 		AD073F02297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F01297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift */; };
 		AD073F06297EC3DC007B8C89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD073F05297EC3DC007B8C89 /* Assets.xcassets */; };
@@ -27,7 +31,6 @@
 		ADC19E4B2981537E00E26D25 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E4A2981537E00E26D25 /* Routes.swift */; };
 		ADC19E4E2981584F00E26D25 /* EpisodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E4D2981584F00E26D25 /* EpisodeModel.swift */; };
 		ADC19E51298159D100E26D25 /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E50298159D100E26D25 /* CharacterModel.swift */; };
-		ADC19E5429815AEA00E26D25 /* EpisodeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E5329815AEA00E26D25 /* EpisodeListModel.swift */; };
 		ADC19E572981634400E26D25 /* EpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E562981634400E26D25 /* EpisodeViewModel.swift */; };
 		ADC19E59298163A100E26D25 /* EpisodeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E58298163A100E26D25 /* EpisodeViewModelProtocol.swift */; };
 		ADC19E5B29816AC100E26D25 /* EpisodeCharacterRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC19E5A29816AC100E26D25 /* EpisodeCharacterRowView.swift */; };
@@ -40,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		225629A32983D3890054DC7E /* NgNetworkModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NgNetworkModule; path = ..; sourceTree = "<group>"; };
+		2260DF1F29926F7500ED9386 /* GetEpisodesListRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEpisodesListRequest.swift; sourceTree = "<group>"; };
+		2260DF2229938C2900ED9386 /* TextStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
+		2260DF2429938E6F00ED9386 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		2290A8D82994CDD900067FFC /* ViewStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyles.swift; sourceTree = "<group>"; };
 		AD06FC25297FE93900A05C0F /* EpisodeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeHeaderView.swift; sourceTree = "<group>"; };
 		AD073EFE297EC3DA007B8C89 /* NetworkModuleSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkModuleSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD073F01297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModuleSampleAppApp.swift; sourceTree = "<group>"; };
@@ -58,7 +65,6 @@
 		ADC19E4A2981537E00E26D25 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		ADC19E4D2981584F00E26D25 /* EpisodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeModel.swift; sourceTree = "<group>"; };
 		ADC19E50298159D100E26D25 /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
-		ADC19E5329815AEA00E26D25 /* EpisodeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListModel.swift; sourceTree = "<group>"; };
 		ADC19E562981634400E26D25 /* EpisodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewModel.swift; sourceTree = "<group>"; };
 		ADC19E58298163A100E26D25 /* EpisodeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewModelProtocol.swift; sourceTree = "<group>"; };
 		ADC19E5A29816AC100E26D25 /* EpisodeCharacterRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCharacterRowView.swift; sourceTree = "<group>"; };
@@ -83,6 +89,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2260DF1A29926EF900ED9386 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2260DF1B29926F0300ED9386 /* Request */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		2260DF1B29926F0300ED9386 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				2260DF1F29926F7500ED9386 /* GetEpisodesListRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		2260DF2129938BF500ED9386 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				2260DF2229938C2900ED9386 /* TextStyles.swift */,
+				2290A8D82994CDD900067FFC /* ViewStyles.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
 		AD073EF5297EC3DA007B8C89 = {
 			isa = PBXGroup;
 			children = (
@@ -278,7 +309,6 @@
 		ADC19E5229815AE200E26D25 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ADC19E5329815AEA00E26D25 /* EpisodeListModel.swift */,
 				ADE5A54A29827378003B3AE6 /* EpisodeRowModel.swift */,
 			);
 			path = Model;
@@ -304,6 +334,8 @@
 		ADE5A5462982687B003B3AE6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2260DF2129938BF500ED9386 /* Style */,
+				2260DF1A29926EF900ED9386 /* Networking */,
 				ADE5A54729826885003B3AE6 /* Views */,
 			);
 			path = Common;
@@ -313,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				ADE5A54829826893003B3AE6 /* ImagePlaceHolder.swift */,
+				2260DF2429938E6F00ED9386 /* CircularProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -416,20 +449,22 @@
 				AD073F28297FDB04007B8C89 /* HomeRowView.swift in Sources */,
 				ADE5A545298265D5003B3AE6 /* EpisodeMainView.swift in Sources */,
 				AD073F16297EC45A007B8C89 /* HomeScene.swift in Sources */,
+				2260DF2329938C2900ED9386 /* TextStyles.swift in Sources */,
 				ADC19E4129812F6600E26D25 /* EpisodeListViewModelProtocol.swift in Sources */,
 				AD073F22297EC637007B8C89 /* EpisodeListRowView.swift in Sources */,
 				AD06FC26297FE93900A05C0F /* EpisodeHeaderView.swift in Sources */,
 				ADC19E572981634400E26D25 /* EpisodeViewModel.swift in Sources */,
 				ADC19E59298163A100E26D25 /* EpisodeViewModelProtocol.swift in Sources */,
 				ADE5A54929826893003B3AE6 /* ImagePlaceHolder.swift in Sources */,
+				2260DF2529938E6F00ED9386 /* CircularProgressView.swift in Sources */,
 				AD073F2B297FE87D007B8C89 /* EpisodeSceneView.swift in Sources */,
 				ADE5A54B29827378003B3AE6 /* EpisodeRowModel.swift in Sources */,
 				ADE5A54D29827827003B3AE6 /* EpisodeCharacterRowModel.swift in Sources */,
 				ADC19E51298159D100E26D25 /* CharacterModel.swift in Sources */,
 				AD4F74A92984168C00BF96CF /* EpisodeHeaderViewModel.swift in Sources */,
-				ADC19E5429815AEA00E26D25 /* EpisodeListModel.swift in Sources */,
 				AD073F1C297EC4FA007B8C89 /* EpisodeListScene.swift in Sources */,
 				ADC19E5B29816AC100E26D25 /* EpisodeCharacterRowView.swift in Sources */,
+				2260DF2029926F7500ED9386 /* GetEpisodesListRequest.swift in Sources */,
 				AD073F1F297EC536007B8C89 /* CharacterScene.swift in Sources */,
 				ADC19E4B2981537E00E26D25 /* Routes.swift in Sources */,
 				AD073F02297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift in Sources */,
@@ -437,6 +472,7 @@
 				ADC19E44298130D000E26D25 /* EpisodeListViewModel.swift in Sources */,
 				ADC19E4E2981584F00E26D25 /* EpisodeModel.swift in Sources */,
 				ADC19E3529801E2300E26D25 /* HomeRowType.swift in Sources */,
+				2290A8D92994CDD900067FFC /* ViewStyles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
