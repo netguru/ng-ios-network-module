@@ -11,19 +11,19 @@ final class EpisodeListViewModel: EpisodeListViewModelProtocol {
     var viewStatePublished: Published<EpisodeListViewState> { _viewState }
     var viewStatePublisher: Published<EpisodeListViewState>.Publisher { $viewState }
 
-    let requestType: NetworkModuleApiType
+    let selectedNetworkApi: NetworkModuleApiType
     let networkModule: NetworkModule
 
     init(
         requestType: NetworkModuleApiType,
         networkModule: NetworkModule
     ) {
-        self.requestType = requestType
+        selectedNetworkApi = requestType
         self.networkModule = networkModule
     }
 
     func fetchData() {
-        switch requestType {
+        switch selectedNetworkApi {
         case .classic:
             classicNetworkRequest()
         case .combine:

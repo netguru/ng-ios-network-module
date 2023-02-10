@@ -21,20 +21,17 @@ struct EpisodeListScene<T: EpisodeListViewModelProtocol>: View {
 
             if let error = isErrorLoaded {
                 Text("Error: \(error)")
-                    .lineLimit(0)
-                    .font(.body)
-                    .foregroundColor(Color("white"))
-                    .bold()
+                    .networkError()
             }
 
             if let episodes = loadedEpisodeList {
                 VStack {
                     ScrollView {
-                        ForEach(episodes) { episode in
-                            EpisodeListRowView(episode: episode, requestType: viewModel.requestType)
+                        ForEach(episodes) {
+                            EpisodeListRowView(data: $0)
                         }
                     }
-                    .padding()
+                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 30, trailing: 10))
                     .scrollIndicators(.hidden)
                 }
             }
@@ -49,6 +46,7 @@ struct EpisodeListScene<T: EpisodeListViewModelProtocol>: View {
         .onAppear {
             viewModel.fetchData()
         }
+        .ignoresSafeArea(edges: [.bottom])
     }
 }
 
@@ -57,10 +55,12 @@ private extension EpisodeListScene {
         viewModel.viewState == .loading
     }
 
-    var loadedEpisodeList: [EpisodeRowModel]? {
+    var loadedEpisodeList: [EpisodeViewData]? {
         switch viewModel.viewState {
         case let .loaded(episodeList):
-            return episodeList.map(EpisodeRowModel.init)
+            return episodeList.map {
+                EpisodeViewData(episode: $0, selectedNetworkApi: viewModel.selectedNetworkApi)
+            }
         default:
             return nil
         }

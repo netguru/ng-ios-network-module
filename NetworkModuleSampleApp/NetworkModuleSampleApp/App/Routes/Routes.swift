@@ -7,7 +7,6 @@ import Foundation
 
 enum Route: Hashable {
     case home
-    case episodeList(NetworkModuleApiType)
-    case episode(requestType: NetworkModuleApiType, episodeId: Int)
-    case character
+    case episodeList(requestType: NetworkModuleApiType)
+    case episode(selectedNetworkApi: NetworkModuleApiType, episode: EpisodeModel)
 }

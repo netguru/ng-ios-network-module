@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct EpisodeModel: Decodable, Identifiable, Equatable {
+struct EpisodeModel: Decodable, Identifiable, Equatable, Hashable {
     let id: Int
     let name: String
     let airDate: String?

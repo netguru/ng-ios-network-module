@@ -11,8 +11,9 @@ struct EpisodeMiniatureImageModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .frame(width: size.width, height: size.height)
             .scaledToFill()
+            .frame(width: size.width, height: size.height)
+            .clipped()
             .cornerRadius(cornerRadius)
     }
 }
@@ -20,8 +21,8 @@ struct EpisodeMiniatureImageModifier: ViewModifier {
 extension View {
 
     func episodeMiniature(
-        size: CGSize = CGSize(width: 100, height: 100),
-        cornerRadius: CGFloat = 5
+        size: CGSize = Constants.Miniature.size,
+        cornerRadius: CGFloat = Constants.Miniature.cornerRadius
     ) -> some View {
         modifier(EpisodeMiniatureImageModifier(size: size, cornerRadius: cornerRadius))
     }

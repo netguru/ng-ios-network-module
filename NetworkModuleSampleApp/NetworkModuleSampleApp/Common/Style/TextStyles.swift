@@ -14,8 +14,23 @@ struct SingleLineScaledToFitTextModifier: ViewModifier {
     }
 }
 
+struct NetworkErrorTextModifier: ViewModifier {
+
+    func body(content: Content) -> some View {
+        content
+            .lineLimit(3)
+            .font(.body)
+            .foregroundColor(Color("white"))
+            .bold()
+    }
+}
+
 extension Text {
     func singleLineScaledToFit() -> some View {
         modifier(SingleLineScaledToFitTextModifier())
+    }
+
+    func networkError() -> some View {
+        modifier(NetworkErrorTextModifier())
     }
 }

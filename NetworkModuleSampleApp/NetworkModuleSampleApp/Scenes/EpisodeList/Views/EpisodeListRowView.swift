@@ -6,8 +6,7 @@
 import SwiftUI
 
 struct EpisodeListRowView: View {
-    let episode: EpisodeRowModel
-    let requestType: NetworkModuleApiType
+    let data: EpisodeViewData
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -17,10 +16,10 @@ struct EpisodeListRowView: View {
                 .padding(.bottom, 0)
                 .cornerRadius(20)
 
-            NavigationLink(value: Route.episode(requestType: requestType, episodeId: episode.id)) {
+            NavigationLink(value: data.navigationRoute) {
                 HStack(alignment: .bottom) {
                     AsyncImage(
-                        url: URL(string: episode.secureImageURL),
+                        url: data.imageURL,
                         content: { image in
                             image
                                 .resizable()
@@ -28,33 +27,35 @@ struct EpisodeListRowView: View {
                                 .padding(15)
                         },
                         placeholder: {
-                            ImagePlaceHolder()
-                                .padding(15)
+                            ImagePlaceHolder(
+                                size: Constants.Miniature.size,
+                                thickness: Constants.Miniature.progressIndicatorThickness
+                            )
+                            .padding(15)
                         }
                     )
 
                     VStack(alignment: .leading) {
-                        Text(episode.name)
+                        Text(data.name)
                             .foregroundColor(Color("white"))
                             .font(.title2)
                             .bold()
                             .singleLineScaledToFit()
-                            .padding(.bottom, 20)
-                        Text("Director: \(episode.director)")
+                            .padding(.bottom, 5)
+                        Text("Director: \(data.director)")
                             .foregroundColor(.gray)
                             .font(.subheadline)
                             .singleLineScaledToFit()
-                        Text("Writer: \(episode.writer)")
+                        Text("Writer: \(data.writer)")
                             .foregroundColor(.gray)
                             .font(.subheadline)
                             .singleLineScaledToFit()
-                        Text("Air Date: \(episode.airDate ?? "---")")
+                        Text("Air Date: \(data.airDate)")
                             .foregroundColor(.yellow)
                             .font(.subheadline)
                             .singleLineScaledToFit()
                     }
                     .padding(.bottom, 20)
-                    .padding(.leading, 10)
 
                     Spacer()
 
@@ -73,7 +74,7 @@ struct EpisodeListRowView: View {
 
 struct EpisodeRowView_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeListRowView(episode: PreviewMocks.mockEpisodeRowModel, requestType: .classic)
+        EpisodeListRowView(data: PreviewMocks.mockEpisodeViewData)
             .previewLayout(.fixed(width: 400, height: 180))
     }
 }
