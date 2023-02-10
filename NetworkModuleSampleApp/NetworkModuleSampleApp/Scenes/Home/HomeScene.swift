@@ -36,13 +36,18 @@ struct HomeScene: View {
                 case .home:
                     HomeScene()
                 case let .episodeList(requestType):
-                    let viewModel = EpisodeListViewModel(requestType: requestType, networkModule: networkModule)
+                    let viewModel = EpisodeListViewModel(
+                        requestType: requestType,
+                        networkModule: networkModule
+                    )
                     EpisodeListScene<EpisodeListViewModel>(viewModel: viewModel)
-                case let .episode(requestType, episodeId):
-                    let viewModel = EpisodeViewModel(requestType: requestType, episodeId: episodeId)
-                    EpisodeSceneView<EpisodeViewModel>(viewModel: viewModel)
-                case .character:
-                    CharacterScene()
+                case let .episode(requestType, episode):
+                    let viewModel = EpisodeViewModel(
+                        selectedNetworkingAPI: requestType,
+                        episode: episode,
+                        networkModule: networkModule
+                    )
+                    EpisodeScene<EpisodeViewModel>(viewModel: viewModel)
                 }
             }
         }

@@ -8,7 +8,7 @@ struct HomeRowView: View {
     let rowType: HomeRowType
 
     var body: some View {
-        NavigationLink(value: Route.episodeList(rowType.viewModelType)) {
+        NavigationLink(value: Route.episodeList(requestType: rowType.viewModelType)) {
             HStack {
                 Image(systemName: rowType.rowImageName)
                     .resizable()

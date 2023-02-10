@@ -6,31 +6,35 @@
 import SwiftUI
 
 struct EpisodeHeaderView: View {
-    let episode: EpisodeHeaderViewModel
+    let data: EpisodeViewData
 
     var body: some View {
         ZStack {
             Color("episode_background")
             VStack {
-                AsyncImage(
-                    url: URL(string: episode.imageURL),
-                    content: { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 300)
-                    },
-                    placeholder: {
-                        ImagePlaceHolder()
-                    }
-                )
+                ZStack(alignment: .init(horizontal: .leading, vertical: .bottom)) {
+                    AsyncImage(
+                        url: data.imageURL,
+                        content: { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        },
+                        placeholder: {
+                            ImagePlaceHolder(size: .init(width: 200, height: 200), thickness: 8)
+                        }
+                    )
 
-                VStack(alignment: .leading) {
-                    Text(episode.name)
+                    Text(data.name)
                         .foregroundColor(.white)
                         .font(.title2)
                         .bold()
-                        .padding(.bottom, 20)
+                        .singleLineScaledToFit()
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 10)
+                }
+
+                VStack(alignment: .leading) {
                     Text("Information")
                         .foregroundColor(.white)
                         .font(.title3)
@@ -39,21 +43,21 @@ struct EpisodeHeaderView: View {
                         .background(.white)
                         .frame(height: 1)
 
-                    Text("Director: \(episode.director)")
+                    Text("Director: \(data.director)")
                         .foregroundColor(.gray)
                         .font(.subheadline)
                         .padding(.bottom, 5)
-                    Text("Writer: \(episode.writer)")
+                    Text("Writer: \(data.writer)")
                         .foregroundColor(.gray)
                         .font(.subheadline)
                         .padding(.bottom, 5)
-                    Text("Air Date: \(episode.airDate ?? "---")")
+                    Text("Air Date: \(data.airDate)")
                         .foregroundColor(.yellow)
                         .font(.subheadline)
                         .padding(.bottom, 5)
                     Spacer()
                 }
-                .padding(.leading, 20)
+                .padding()
             }
             .ignoresSafeArea()
         }
@@ -63,6 +67,6 @@ struct EpisodeHeaderView: View {
 
 struct EpisodeHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeHeaderView(episode: PreviewMocks.mockEpisodeHeaderModel)
+        EpisodeHeaderView(data: PreviewMocks.mockEpisodeViewData)
     }
 }

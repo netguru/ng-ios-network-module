@@ -6,20 +6,18 @@
 import SwiftUI
 
 enum EpisodeViewStates: Equatable {
-    case loading
-    case noData
-    case loadedEpisode(EpisodeModel, [CharacterModel])
-    /// Could be created Custom error model
-    case error(Error)
+//    case loading(EpisodeModel, Int)
+    case loading(EpisodeModel)
+    case loaded(EpisodeModel, [CharacterModel])
+    case error(EpisodeModel, Error)
 
     static func == (lhs: EpisodeViewStates, rhs: EpisodeViewStates) -> Bool {
         switch (lhs, rhs) {
-        case (.noData, .noData),
-             (.loading, .loading):
-            return true
-        case let (.error(e1), .error(e2)):
-            return e1.localizedDescription == e2.localizedDescription
-        case let (.loadedEpisode(data1, char1), .loadedEpisode(data2, char2)):
+        case let (.error(data1, e1), .error(data2, e2)):
+            return data1.id == data2.id && e1.localizedDescription == e2.localizedDescription
+        case let (.loading(data1), .loading(data2)):
+            return data1.id == data2.id
+        case let (.loaded(data1, char1), .loaded(data2, char2)):
             return data1.id == data2.id && char1 == char2
         default:
             return false
@@ -35,10 +33,5 @@ protocol EpisodeViewModelProtocol: AnyObject, ObservableObject {
     var viewStatePublished: Published<EpisodeViewStates> { get }
     var viewStatePublisher: Published<EpisodeViewStates>.Publisher { get }
 
-    /// Character Publisher Properties
-    var characters: [CharacterModel] { get }
-    var charactersPublished: Published<[CharacterModel]> { get }
-    var charactersPublisher: Published<[CharacterModel]>.Publisher { get }
-
-    func fetchData(with episodeId: String)
+    func fetchData()
 }
