@@ -48,9 +48,9 @@ extension PreviewMocks {
     final class EpisodeViewModelStub: EpisodeViewModelProtocol {
         var selectedNetworkingAPI: NetworkModuleApiType = .classic
 
-        @Published var viewState: EpisodeViewStates = .loading(PreviewMocks.mockEpisodeModel)
-        var viewStatePublished: Published<EpisodeViewStates> { _viewState }
-        var viewStatePublisher: Published<EpisodeViewStates>.Publisher { $viewState }
+        @Published var viewState: EpisodeViewState = .loading(PreviewMocks.mockEpisodeModel)
+        var viewStatePublished: Published<EpisodeViewState> { _viewState }
+        var viewStatePublisher: Published<EpisodeViewState>.Publisher { $viewState }
 
         @Published var characters: [CharacterModel] = []
         var charactersPublished: Published<[CharacterModel]> { _characters }
