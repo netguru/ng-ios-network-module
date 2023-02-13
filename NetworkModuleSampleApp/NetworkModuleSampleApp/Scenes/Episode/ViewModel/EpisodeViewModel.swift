@@ -65,7 +65,7 @@ private extension EpisodeViewModel {
     }
 
     func fetchCharacterDataUsingClassicApi(urlRequest: URLRequest) {
-        print("--- [Classic] Request started: \(urlRequest.requestPath)")
+        logNetworkInfo("--- [Classic] Request started: \(urlRequest.requestPath)")
         let task = networkModule.performAndDecode(
             urlRequest: urlRequest,
             responseType: CharacterModel.self
@@ -74,11 +74,11 @@ private extension EpisodeViewModel {
 
             switch result {
             case let .success(character):
-                print("--- [Classic] Request completed: \(urlRequest.requestPath)")
+                logNetworkInfo("--- [Classic] Request completed: \(urlRequest.requestPath)")
                 self.characters.append(character)
                 self.viewState = .loaded(self.episode, self.characters)
             case let .failure(error):
-                print("--- [Classic] Request error: \(error.localizedDescription)")
+                logNetworkError("--- [Classic] Request error: \(error.localizedDescription)")
                 self.viewState = .error(self.episode, error)
             }
         }
@@ -86,21 +86,21 @@ private extension EpisodeViewModel {
     }
 
     func fetchCharacterDataUsingReactiveApi(urlRequest: URLRequest) {
-        print("--- [Reactive] Request started: \(urlRequest.requestPath)")
+        logNetworkInfo("--- [Reactive] Request started: \(urlRequest.requestPath)")
         networkModule
             .performAndDecode(urlRequest: urlRequest, responseType: CharacterModel.self, decoder: JSONDecoder())
             .sink(
                 receiveCompletion: { [weak self, episode] completion in
                     switch completion {
                     case .finished:
-                        print("--- [Reactive] Subscription finished for request \(urlRequest.requestPath)")
+                        logNetworkInfo("--- [Reactive] Subscription finished for request \(urlRequest.requestPath)")
                     case let .failure(error):
-                        print("--- [Reactive] Request error: \(error.localizedDescription)")
+                        logNetworkError("--- [Reactive] Request error: \(error.localizedDescription)")
                         self?.viewState = .error(episode, error)
                     }
                 },
                 receiveValue: { [weak self, episode] characterModel in
-                    print("--- [Reactive] Request completed: \(urlRequest.requestPath)")
+                    logNetworkInfo("--- [Reactive] Request completed: \(urlRequest.requestPath)")
                     self?.characters.append(characterModel)
                     self?.viewState = .loaded(episode, self?.characters ?? [])
                 }
@@ -109,17 +109,17 @@ private extension EpisodeViewModel {
     }
 
     func fetchCharacterDataUsingAsyncAwaitApi(urlRequest: URLRequest) async {
-        print("--- [Async/Await] Request started: \(urlRequest.requestPath)")
+        logNetworkInfo("--- [Async/Await] Request started: \(urlRequest.requestPath)")
         do {
             let characterModel = try await networkModule.performAndDecode(
                 urlRequest: urlRequest,
                 responseType: CharacterModel.self
             )
             characters.append(characterModel)
-            print("--- [Async/Await] Request completed: \(urlRequest.requestPath)")
+            logNetworkInfo("--- [Async/Await] Request completed: \(urlRequest.requestPath)")
             await updateByMainActor(viewState: .loaded(episode, characters))
         } catch {
-            print("--- [Async/Await] Request error: \(error.localizedDescription)")
+            logNetworkError("--- [Async/Await] Request error: \(error.localizedDescription)")
             await updateByMainActor(viewState: .error(episode, error))
         }
     }

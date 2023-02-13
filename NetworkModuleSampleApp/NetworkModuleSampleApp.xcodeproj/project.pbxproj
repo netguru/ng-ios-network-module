@@ -15,6 +15,7 @@
 		2290A8D92994CDD900067FFC /* ViewStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290A8D82994CDD900067FFC /* ViewStyles.swift */; };
 		2290A8DB2994EAC500067FFC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290A8DA2994EAC500067FFC /* Constants.swift */; };
 		2290A8E12995118F00067FFC /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290A8E02995118F00067FFC /* StringExtensions.swift */; };
+		2290A8E6299A62AE00067FFC /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290A8E5299A62AE00067FFC /* Logging.swift */; };
 		AD06FC26297FE93900A05C0F /* EpisodeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD06FC25297FE93900A05C0F /* EpisodeHeaderView.swift */; };
 		AD073F02297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD073F01297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift */; };
 		AD073F06297EC3DC007B8C89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD073F05297EC3DC007B8C89 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		2290A8D82994CDD900067FFC /* ViewStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyles.swift; sourceTree = "<group>"; };
 		2290A8DA2994EAC500067FFC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2290A8E02995118F00067FFC /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		2290A8E5299A62AE00067FFC /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		AD06FC25297FE93900A05C0F /* EpisodeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeHeaderView.swift; sourceTree = "<group>"; };
 		AD073EFE297EC3DA007B8C89 /* NetworkModuleSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkModuleSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD073F01297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModuleSampleAppApp.swift; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 				2290A8E02995118F00067FFC /* StringExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2290A8E4299A629A00067FFC /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				2290A8E5299A62AE00067FFC /* Logging.swift */,
+			);
+			path = Logging;
 			sourceTree = "<group>";
 		};
 		AD073EF5297EC3DA007B8C89 = {
@@ -337,6 +347,7 @@
 		ADE5A5462982687B003B3AE6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2290A8E4299A629A00067FFC /* Logging */,
 				2290A8DF2995117C00067FFC /* Extensions */,
 				2260DF2129938BF500ED9386 /* Style */,
 				2260DF1A29926EF900ED9386 /* Networking */,
@@ -458,6 +469,7 @@
 				AD073F22297EC637007B8C89 /* EpisodeListRowView.swift in Sources */,
 				AD06FC26297FE93900A05C0F /* EpisodeHeaderView.swift in Sources */,
 				ADC19E572981634400E26D25 /* EpisodeViewModel.swift in Sources */,
+				2290A8E6299A62AE00067FFC /* Logging.swift in Sources */,
 				ADC19E59298163A100E26D25 /* EpisodeViewModelProtocol.swift in Sources */,
 				ADE5A54929826893003B3AE6 /* ImagePlaceHolder.swift in Sources */,
 				2260DF2529938E6F00ED9386 /* CircularProgressView.swift in Sources */,

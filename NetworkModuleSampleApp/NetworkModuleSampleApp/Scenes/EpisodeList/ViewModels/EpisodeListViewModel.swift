@@ -47,15 +47,18 @@ private extension EpisodeListViewModel {
 
     func fetchEpisodesListUsingClassicApi() {
         let request = GetEpisodesListRequest()
-        print("--- [Classic] Request started: \(request.path)")
+        logNetworkInfo("--- [Classic] Request started: \(request.path)")
         urlTask?.cancel()
-        urlTask = networkModule.performAndDecode(request: request, responseType: [EpisodeModel].self) { [weak self] result in
+        urlTask = networkModule.performAndDecode(
+            request: request,
+            responseType: [EpisodeModel].self
+        ) { [weak self] result in
             switch result {
             case let .success(episodesList):
-                print("--- [Classic] Request completed: \(request.path)")
+                logNetworkInfo("--- [Classic] Request completed: \(request.path)")
                 self?.viewState = .loaded(episodesList)
             case let .failure(error):
-                print("--- [Classic] Request error: \(error.localizedDescription)")
+                logNetworkError("--- [Classic] Request error: \(error.localizedDescription)")
                 self?.viewState = .error(error)
             }
         }
@@ -63,15 +66,15 @@ private extension EpisodeListViewModel {
 
     func fetchEpisodesListUsingReactiveApi() {
         let request = GetEpisodesListRequest()
-        print("--- [Reactive] Request started: \(request.path)")
+        logNetworkInfo("--- [Reactive] Request started: \(request.path)")
         networkModule
             .performAndDecode(request: request, responseType: [EpisodeModel].self, decoder: JSONDecoder())
             .map { episodeModels in
-                print("--- [Reactive] Request completed: \(request.path)")
+                logNetworkInfo("--- [Reactive] Request completed: \(request.path)")
                 return EpisodeListViewState.loaded(episodeModels)
             }
             .catch {
-                print("--- [Reactive] Request error: \($0.localizedDescription)")
+                logNetworkError("--- [Reactive] Request error: \($0.localizedDescription)")
                 return Just(EpisodeListViewState.error($0))
             }
             .assign(to: &$viewState)
@@ -79,16 +82,16 @@ private extension EpisodeListViewModel {
 
     func fetchEpisodesListUsingAsyncAwaitApi() async {
         let request = GetEpisodesListRequest()
-        print("--- [Async/Await] Request started: \(request.path)")
+        logNetworkInfo("--- [Async/Await] Request started: \(request.path)")
         do {
             let episodes = try await networkModule.performAndDecode(
                 request: request,
                 responseType: [EpisodeModel].self
             )
-            print("--- Async/AwaitRequest completed: \(request.path)")
+            logNetworkInfo("--- Async/AwaitRequest completed: \(request.path)")
             await updateByMainActor(viewState: .loaded(episodes))
         } catch {
-            print("--- Async/AwaitRequest error: \(error.localizedDescription)")
+            logNetworkError("--- Async/AwaitRequest error: \(error.localizedDescription)")
             await updateByMainActor(viewState: .error(error))
         }
     }
