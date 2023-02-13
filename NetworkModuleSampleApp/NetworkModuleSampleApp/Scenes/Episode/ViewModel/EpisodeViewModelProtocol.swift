@@ -5,13 +5,12 @@
 
 import SwiftUI
 
-enum EpisodeViewStates: Equatable {
-//    case loading(EpisodeModel, Int)
+enum EpisodeViewState: Equatable {
     case loading(EpisodeModel)
     case loaded(EpisodeModel, [CharacterModel])
     case error(EpisodeModel, Error)
 
-    static func == (lhs: EpisodeViewStates, rhs: EpisodeViewStates) -> Bool {
+    static func == (lhs: EpisodeViewState, rhs: EpisodeViewState) -> Bool {
         switch (lhs, rhs) {
         case let (.error(data1, e1), .error(data2, e2)):
             return data1.id == data2.id && e1.localizedDescription == e2.localizedDescription
@@ -29,9 +28,9 @@ protocol EpisodeViewModelProtocol: AnyObject, ObservableObject {
     var selectedNetworkingAPI: NetworkModuleApiType { get }
 
     /// Episode Publisher Properties
-    var viewState: EpisodeViewStates { get }
-    var viewStatePublished: Published<EpisodeViewStates> { get }
-    var viewStatePublisher: Published<EpisodeViewStates>.Publisher { get }
+    var viewState: EpisodeViewState { get }
+    var viewStatePublished: Published<EpisodeViewState> { get }
+    var viewStatePublisher: Published<EpisodeViewState>.Publisher { get }
 
     func fetchData()
 }
