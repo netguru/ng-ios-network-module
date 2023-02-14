@@ -50,6 +50,7 @@
 		2290A8DA2994EAC500067FFC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2290A8E02995118F00067FFC /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		2290A8E5299A62AE00067FFC /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		22BD5043299B97BA009B301C /* NgNetworkModuleShowcase.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = NgNetworkModuleShowcase.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AD06FC25297FE93900A05C0F /* EpisodeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeHeaderView.swift; sourceTree = "<group>"; };
 		AD073EFE297EC3DA007B8C89 /* NetworkModuleSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkModuleSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD073F01297EC3DA007B8C89 /* NetworkModuleSampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModuleSampleAppApp.swift; sourceTree = "<group>"; };
@@ -130,10 +131,19 @@
 			path = Logging;
 			sourceTree = "<group>";
 		};
+		22BD5042299B9795009B301C /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				22BD5043299B97BA009B301C /* NgNetworkModuleShowcase.playground */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
 		AD073EF5297EC3DA007B8C89 = {
 			isa = PBXGroup;
 			children = (
 				AD073F0F297EC3F9007B8C89 /* Packages */,
+				22BD5042299B9795009B301C /* Playground */,
 				AD073F00297EC3DA007B8C89 /* NetworkModuleSampleApp */,
 				AD073EFF297EC3DA007B8C89 /* Products */,
 				AD073F11297EC412007B8C89 /* Frameworks */,
