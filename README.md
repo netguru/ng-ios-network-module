@@ -230,9 +230,22 @@ let networkModule = DefaultNetworkModule(
 **Description**: The request has been cancelled by the user.      
 **Solution**: Not treated as an error!
 
+## Sample content
+
 ### Running sample application
 
-Coming soon...
+There is a sample application showcasing the **NgNetworkModule** versatility. It can be found in `NetworkModuleSampleApp` folder and opened using the Xcode project file.
+The app uses `SwiftFormat` dependency (obtained from the **NgNetworkModule**) to ensure proper code formatting.\
+The application is based on free [API](https://finalspaceapi.com/) service for **Final Space** animated series. It allows you to go through the list of episodes, see the episode details and characters that appeared there. It is written 100% in SwiftUI, targeting iOS 16.
+Points of interests:
+- `HomeScene` - a main app view, allowing to select which of the APIs exposed by the **NgNetworkModule** (classic, reactive or async/await) should be used to obtain data from the **Final Space API service**.
+- `EpisodeListViewModel` - a **view model** for `EpisodeListScene`, showcasing obtaining, parsing and providing episodes list data to the view.
+- `EpisodeViewModel` - a **view model** for `EpisodeScene`, showcasing obtaining, parsing and providing data necessary to render episode details view (mostly character data).
+
+### Running sample playground
+
+Alternatively, within `NetworkModuleSampleApp` there is a `Playground` folder containing a playground file also showcasing the **NgNetworkModule** API.\
+It uses several, internal source files, e.g. `FetchCharacterRequest` and `FetchCharacterResponse` to increase code readability. 
 
 ## Related repositories
 
