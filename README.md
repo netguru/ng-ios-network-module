@@ -247,6 +247,21 @@ Points of interests:
 Alternatively, within `NetworkModuleSampleApp` there is a `Playground` folder containing a playground file also showcasing the **NgNetworkModule** API.\
 It uses several, internal source files, e.g. `FetchCharacterRequest` and `FetchCharacterResponse` to increase code readability. 
 
+## Contributing
+
+If you would like to help us improve the module, don't hesitate to [contribute](CONTRIBUTING.md)!
+
+## Authors & project maintainers
+
+- [Pawel Kozielecki](https://github.com/pkozielecki)
+- [Kemal Ekren](https://github.com/esatkemal)
+
+See also the list of [contributors](https://github.com/netguru/ng-ios-network-module/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License.
+
 ## Related repositories
 
 - [Netguru Pinning Engine](https://github.com/netguru/pinning-engine-ios)
