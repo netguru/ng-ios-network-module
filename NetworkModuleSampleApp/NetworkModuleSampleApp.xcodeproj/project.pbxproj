@@ -231,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				ADC19E4F298158D100E26D25 /* Model */,
-				AD073F29297FE6C0007B8C89 /* Views */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -259,13 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				AD073F27297FDB04007B8C89 /* HomeRowView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		AD073F29297FE6C0007B8C89 /* Views */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";
