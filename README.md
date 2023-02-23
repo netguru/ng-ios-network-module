@@ -264,6 +264,5 @@ This project is licensed under the MIT License.
 
 ## Related repositories
 
-- [Netguru Pinning Engine](https://github.com/netguru/pinning-engine-ios)
 - [Highway](https://github.com/netguru/highway)
 - [Response Detective](https://github.com/netguru/ResponseDetective)
