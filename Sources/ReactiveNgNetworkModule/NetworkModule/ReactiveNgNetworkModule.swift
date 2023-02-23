@@ -39,8 +39,7 @@ public extension NetworkModule {
         responseType: T.Type,
         decoder: Coder = JSONDecoder()
     ) -> any Publisher<T, NetworkError> where Coder.Input == Data {
-        Publishers.NetworkResponsePublisher(urlRequest: urlRequest, networkModule: self)
-            .handleAndDecode(to: responseType, decoder: decoder)
+        perform(urlRequest: urlRequest).handleAndDecode(to: responseType, decoder: decoder)
     }
 
     /// A convenience method allowing to execute a network request, parse a response and return it as a Publisher.
@@ -55,7 +54,6 @@ public extension NetworkModule {
         responseType: T.Type,
         decoder: Coder = JSONDecoder()
     ) -> AnyPublisher<T, NetworkError> where Coder.Input == Data {
-        Publishers.NetworkResponsePublisher(request: request, networkModule: self)
-            .handleAndDecode(to: responseType, decoder: decoder)
+        perform(request: request).handleAndDecode(to: responseType, decoder: decoder)
     }
 }
