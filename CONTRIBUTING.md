@@ -26,14 +26,14 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
-[Netguru iOS Networking Module Code of Conduct](https://github.com/netguru/ng-ios-network-moduleblob/master/CODE_OF_CONDUCT.md).
+[Netguru iOS Networking Module Code of Conduct](https://github.com/netguru/ng-ios-network-module/blob/main/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code. Please report unacceptable behavior
 to <network-module-ios@netguru.com>.
 
 
 ## I Have a Question
 
-> If you want to ask a question, we assume that you have read the available [Documentation]().
+> If you want to ask a question, we assume that you have read the available [Documentation](https://github.com/netguru/ng-ios-network-module/blob/main/README.md).
 
 Before you ask a question, it is best to search for existing [Issues](https://github.com/netguru/ng-ios-network-module/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
 
@@ -69,7 +69,7 @@ A good bug report shouldn't leave others needing to chase you up for more inform
 
 #### How Do I Submit a Good Bug Report?
 
-> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <pawel.kozielecki@netguru.com>.
+> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <network-module-ios@netguru.com>.
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:
 
