@@ -27,7 +27,7 @@ Welcome to the **Netguru Networking Module**.\
 dependencies: [
         .package(
             url: "https://github.com/netguru/ng-ios-network-module.git",
-            from: "1.0.0"
+            from: "1.0.3"
         )
     ]
 ```
