@@ -80,7 +80,7 @@ private extension EpisodeListViewModel {
             .assign(to: &$viewState)
     }
 
-    func fetchEpisodesListUsingAsyncAwaitApi() async {
+    @MainActor func fetchEpisodesListUsingAsyncAwaitApi() async {
         let request = GetEpisodesListRequest()
         logNetworkInfo("--- [Async/Await] Request started: \(request.path)")
         do {
@@ -89,18 +89,10 @@ private extension EpisodeListViewModel {
                 responseType: [EpisodeModel].self
             )
             logNetworkInfo("--- Async/AwaitRequest completed: \(request.path)")
-            await updateByMainActor(viewState: .loaded(episodes))
+            viewState = .loaded(episodes)
         } catch {
             logNetworkError("--- Async/AwaitRequest error: \(error.localizedDescription)")
-            await updateByMainActor(viewState: .error(error))
-        }
-    }
-
-    func updateByMainActor(viewState: EpisodeListViewState) async {
-        // Discussion: Alternatively, you can just annotate `viewState` with @MainActor ...
-        // ... to ensure it is updated on the Main Thread.
-        await MainActor.run { [weak self] in
-            self?.viewState = viewState
+            viewState = .error(error)
         }
     }
 }

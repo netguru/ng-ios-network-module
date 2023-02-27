@@ -108,7 +108,7 @@ private extension EpisodeViewModel {
             .store(in: &cancellables)
     }
 
-    func fetchCharacterDataUsingAsyncAwaitApi(urlRequest: URLRequest) async {
+    @MainActor func fetchCharacterDataUsingAsyncAwaitApi(urlRequest: URLRequest) async {
         logNetworkInfo("--- [Async/Await] Request started: \(urlRequest.requestPath)")
         do {
             let characterModel = try await networkModule.performAndDecode(
@@ -117,10 +117,10 @@ private extension EpisodeViewModel {
             )
             characters.append(characterModel)
             logNetworkInfo("--- [Async/Await] Request completed: \(urlRequest.requestPath)")
-            await updateByMainActor(viewState: .loaded(episode, characters))
+            viewState = .loaded(episode, characters)
         } catch {
             logNetworkError("--- [Async/Await] Request error: \(error.localizedDescription)")
-            await updateByMainActor(viewState: .error(episode, error))
+            viewState = .error(episode, error)
         }
     }
 
@@ -135,14 +135,6 @@ private extension EpisodeViewModel {
         }
         tasks = []
         urlTasks = []
-    }
-
-    func updateByMainActor(viewState: EpisodeViewState) async {
-        // Discussion: Alternatively, you can just annotate `viewState` with @MainActor ...
-        // ... to ensure it is updated on the Main Thread.
-        await MainActor.run { [weak self] in
-            self?.viewState = viewState
-        }
     }
 }
 
