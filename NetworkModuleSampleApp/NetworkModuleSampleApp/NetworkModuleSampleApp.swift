@@ -1,12 +1,12 @@
 //
-//  NetworkModuleSampleAppApp.swift
+//  NetworkModuleSampleApp.swift
 //  Netguru iOS Network Module
 //
 
 import SwiftUI
 
 @main
-struct NetworkModuleSampleAppApp: App {
+struct NetworkModuleSampleApp: App {
     var body: some Scene {
         WindowGroup {
             HomeScene()
