@@ -61,9 +61,6 @@ GEM
       danger
       rake (> 10)
       thor (~> 0.19)
-    danger-xcode_summary (1.2.0)
-      danger-plugin-api (~> 1.0)
-      xcresult (~> 0.2)
     danger-xcov (0.5.0)
       danger (>= 2.1)
       xcov (>= 1.7.3)
@@ -233,7 +230,8 @@ GEM
       trailblazer-option (>= 0.1.1, < 0.2.0)
       uber (< 0.2.0)
     retriable (3.1.2)
-    rexml (3.2.5)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rouge (2.0.7)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -250,6 +248,7 @@ GEM
       CFPropertyList
       naturally
     slack-notifier (2.4.0)
+    strscan (3.1.0)
     terminal-notifier (2.0.0)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
@@ -291,6 +290,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   danger (~> 8.6.1)
@@ -298,7 +298,6 @@ DEPENDENCIES
   danger-ios_logs (~> 0.1.2)
   danger-swiftformat (~> 0.8.1)
   danger-swiftlint (~> 0.30.2)
-  danger-xcode_summary (~> 1.2.0)
   danger-xcov (~> 0.5.0)
   fastlane
   highway (~> 1.0)
